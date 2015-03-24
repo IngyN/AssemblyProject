@@ -74,7 +74,12 @@ void RFormat::display()
             break;
             
         case 0x0c: // ADD
-            cout << "\tSYSCALL\t$" << endl ;
+            cout << "\tSYSCALL\t" << endl ;
+            
+            break;
+            
+        case 0x08: // ADD
+            cout << "\tJR\t$" << rs << endl ;
             
             break;
             
@@ -86,4 +91,13 @@ void RFormat::display()
 void RFormat::execute()
 {
     
+    
+    
+    
+    
+    
+    
 }
+
+
+
