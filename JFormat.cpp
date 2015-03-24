@@ -7,3 +7,18 @@
 //
 
 #include "JFormat.h"
+
+JFormat::JFormat()
+{
+    
+}
+
+JFormat::~JFormat()
+{
+    
+}
+
+void JFormat::decode ()
+{
+    
+}

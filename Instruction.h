@@ -19,10 +19,12 @@ public:
     virtual void display ()=0;
     virtual void execute ()=0;
     
+    static void select(Instruction *, unsigned char);
     
 protected:
     
-    char Word[4];
+   unsigned char Word[4];
+
     
 };
 
