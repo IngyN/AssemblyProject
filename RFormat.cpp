@@ -73,3 +73,8 @@ void RFormat::display()
     }
     
 }
+
+void RFormat::execute()
+{
+    
+}

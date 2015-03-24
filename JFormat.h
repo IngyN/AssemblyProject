@@ -18,6 +18,9 @@ public:
     ~JFormat();
     
     void decode ();
+
+    void display ();
+    void execute ();
     
 private:
     

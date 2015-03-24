@@ -15,6 +15,9 @@ class IFormat: public Instruction
 {
 public:
     
+    void decode ();
+    void display ();
+    void execute ();
 private:
     
 };

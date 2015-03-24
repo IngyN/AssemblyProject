@@ -7,3 +7,16 @@
 //
 
 #include "IFormat.h"
+
+void IFormat::decode ()
+{
+    
+}
+void IFormat::display ()
+{
+    
+}
+void IFormat::execute ()
+{
+    
+}

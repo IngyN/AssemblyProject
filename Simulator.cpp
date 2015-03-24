@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include "Simulator.h"
+#include <cmath>
 
 using namespace std;
 
@@ -33,6 +34,7 @@ Simulator::~Simulator()
 void Simulator::readTextFromFile(string source)
 {
     unsigned int instWord=0;
+    
     Instruction * p=NULL;
     ifstream inFile;
     string inFileName = "";
@@ -44,11 +46,13 @@ void Simulator::readTextFromFile(string source)
     // Open the binary file to start reading the instructions
     inFile.open(inFileName.c_str(), ios::in | ios::binary);
     
+    long long maxSize= pow(2, 26)*3;
+    
     // If the file is open (this will evaluate to false if the file could not be found)
     if(inFile.is_open())
     {
         // Start reading and decoding the instructions.
-        while(true)
+        while(true && textSegment.size()<maxSize)
         {
             // Read 4 bytes (an instruction) from the file
             if(!inFile.read((char *)&instWord, 4))
@@ -67,3 +71,5 @@ void Simulator::readTextFromFile(string source)
     
     inFile.close();
 }
+
+

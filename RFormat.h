@@ -15,10 +15,11 @@ class RFormat: public Instruction
 public:
     void decode ();
     void display();
+    void execute ();
 
 private:
     
-    char rd, rs, rt, func, shamt, imm;
+    unsigned char rd, rs, rt, func, shamt, imm;
 };
 
 #endif /* defined(__AssemblyProject__RFormat__) */

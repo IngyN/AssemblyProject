@@ -28,6 +28,7 @@ public:
     void execute();
     void display ();
     
+    
     void readTextFromFile(string);
     
 private:

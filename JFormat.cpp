@@ -22,3 +22,12 @@ void JFormat::decode ()
 {
     
 }
+
+void JFormat::display()
+{
+    
+}
+
+void JFormat::execute(){
+    
+}
