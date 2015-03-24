@@ -7,6 +7,9 @@
 //
 
 #include "JFormat.h"
+#include <iostream>
+
+using namespace std;
 
 JFormat::JFormat(unsigned int Word)
 {
@@ -35,7 +38,7 @@ void JFormat::decode (unsigned int pc)
     
     targetAddress|=pc;
     
-    this->execute();
+    int r=this->execute();
 
 }
 
@@ -48,10 +51,14 @@ void JFormat::execute()
 {
     switch (opcode) {
         case 0x02:
+            // j
+            break;
+            
+        case 0x03:
+            // jal
             
             break;
-        case 0x03:
-            break;
+            
         default:
             cout << "\nUnknown J-Format instruction"<<endl;
             break;

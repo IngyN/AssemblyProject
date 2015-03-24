@@ -8,6 +8,8 @@
 
 #ifndef __AssemblyProject__Instruction__
 #define __AssemblyProject__Instruction__
+#include <bitset>
+using namespace std;
 
 class Instruction
 {
@@ -32,6 +34,9 @@ protected:
    unsigned int word;
    unsigned char opcode;
 
+    // Registers
+    // 32 registers of size 32 bits (4bytes).
+    bitset <32> registers [32];
     
 };
 

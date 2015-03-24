@@ -40,11 +40,7 @@ private:
     unsigned char memory[8*1024];	// This array represents the data memory available
     // only 8KB of data memory
     // Starts from address 0x10010000
-    
-    // Registers
-    // 32 registers of size 32 bits (4bytes).
-    bitset <32> registers [32];
-    
+
     // Program counter
     static unsigned int pc;
 };

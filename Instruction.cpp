@@ -11,6 +11,13 @@
 //# include "RFormat.h"
 using namespace std;
 
+Instruction::Instruction()
+{
+    //Initialize registers
+    for (int i=0; i<32;i++)
+        registers[i].reset();
+}
+
 void Instruction ::select(Instruction *p, unsigned char opcode)
 {
     if(opcode ==0)
