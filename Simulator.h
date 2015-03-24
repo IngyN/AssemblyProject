@@ -30,7 +30,7 @@ private:
     
     vector<Instruction *> textSegment; // starting address: 0x 0400 0000
     
-    char memory[8*1024];	// This array represents the data memory available
+    unsigned char memory[8*1024];	// This array represents the data memory available
     // only 8KB of data memory
     // Starts from address 0x10010000
     

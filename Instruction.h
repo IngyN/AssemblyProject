@@ -15,6 +15,8 @@ public:
     Instruction ();
     ~Instruction();
     
+    void setWord(unsigned int);
+    
     virtual void decode ()=0;
     virtual void display ()=0;
     virtual void execute ()=0;
@@ -24,10 +26,9 @@ public:
 protected:
     
 
-    unsigned int word;
-    char opcode;
 
-
+   unsigned int word;
+    unsigned char opcode;
 
     
 };
