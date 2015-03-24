@@ -8,7 +8,10 @@
 
 #include "Instruction.h"
 #include <iostream>
-//# include "RFormat.h"
+# include "RFormat.h"
+# include "JFormat.h"
+#include "IFormat.h"
+
 using namespace std;
 
 Instruction::Instruction()

@@ -14,10 +14,10 @@
 class JFormat: public Instruction
 {
 public:
-    JFormat(unsigned int);
+    JFormat();
     ~JFormat();
     
-    void decode (unsigned int);
+    void decode ();
 
     void display (); 
     void execute ();

@@ -9,7 +9,12 @@
 #ifndef __AssemblyProject__Instruction__
 #define __AssemblyProject__Instruction__
 #include <bitset>
+
 using namespace std;
+
+class RFormat;
+class JFormat;
+class IFormat;
 
 class Instruction
 {

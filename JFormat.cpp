@@ -8,12 +8,13 @@
 
 #include "JFormat.h"
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
-JFormat::JFormat(unsigned int Word)
+JFormat::JFormat()
 {
-    this->Instruction::word=Word;
+    
 }
 
 JFormat::~JFormat()
@@ -21,7 +22,7 @@ JFormat::~JFormat()
     
 }
 
-void JFormat::decode (unsigned int pc)
+void JFormat::decode ()
 {
     //j, jal
     
@@ -52,13 +53,17 @@ void JFormat::execute()
     switch (opcode) {
         case 0x02:
             // j
-            if(pc+targetAddress<192*pow(2,26))
+            if((pc+targetAddress)<(192*pow(2,26)+pow(2,12))&&(pc+targetAddress)>0 )
                 pc+=targetAddress;
             break;
             
         case 0x03:
             // jal
-            
+            if((pc+targetAddress)<(192*pow(2,26)+pow(2,12))&&(pc+targetAddress)>0 )
+            {
+                registers[31]=pc+1;
+                pc+=targetAddress;
+            }
             break;
             
         default:
