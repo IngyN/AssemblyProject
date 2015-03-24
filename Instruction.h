@@ -22,7 +22,8 @@ public:
     
 protected:
     
-    char Word[4];
+    unsigned int word;
+    char opcode;
     
 };
 

@@ -14,7 +14,10 @@ class RFormat: public Instruction
 {
 public:
     
+    
 private:
+    
+    char rd, rs, rt, func, shamt, imm;
 };
 
 #endif /* defined(__AssemblyProject__RFormat__) */
