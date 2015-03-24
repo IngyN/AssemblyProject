@@ -36,7 +36,7 @@ protected:
 
     // Registers
     // 32 registers of size 32 bits (4bytes).
-    bitset <32> registers [32];
+    int registers [32];
     
 };
 
