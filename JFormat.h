@@ -19,7 +19,7 @@ public:
     
     void decode (unsigned int);
 
-    void display ();
+    void display (); 
     void execute ();
     
 private:

@@ -38,7 +38,7 @@ void JFormat::decode (unsigned int pc)
     
     targetAddress|=pc;
     
-    int r=this->execute();
+    r=this->execute();
 
 }
 
@@ -49,9 +49,11 @@ void JFormat::display()
 
 void JFormat::execute()
 {
+    int r=0;
     switch (opcode) {
         case 0x02:
             // j
+            
             break;
             
         case 0x03:
