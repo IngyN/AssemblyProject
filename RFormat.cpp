@@ -35,45 +35,54 @@ void RFormat::display()
     {
         case 0x20: // ADD
             cout << "\tADD\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
-            //regs[rd]=regs[rs]+regs[rt];
+    
             break;
             
         case 0x21: // ADD
             cout << "\tADDU\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
-            //regs[rd]=regs[rs]+regs[rt];
+            
             break;
             
         case 0x22: // ADD
             cout << "\tSUB\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
-            //regs[rd]=regs[rs]+regs[rt];
+            
             break;
             
         case 0x24: // ADD
             cout << "\tAND\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
-            //regs[rd]=regs[rs]+regs[rt];
+            
             break;
             
         case 0x25: // ADD
             cout << "\tOR\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
-            //regs[rd]=regs[rs]+regs[rt];
+            
             break;
             
         case 0x26: // ADD
             cout << "\tXOR\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
-            //regs[rd]=regs[rs]+regs[rt];
+            
             break;
             
         case 0x02: // ADD
-            cout << "\tSRL\t$" << dec << rd << ", $" << rs << ", $" << shamt << endl ;
-            //regs[rd]=regs[rs]+regs[rt];
+            cout << "\tSRL\t$" << dec << rd << ", $" << rs << ", " << shamt << endl ;
+            
+            break;
+            
+        case 0x00: // ADD
+            cout << "\tSLL\t$" << dec << rd << ", $" << rs << ", " << shamt << endl ;
+            
+            break;
+            
+        case 0x0c: // ADD
+            cout << "\tSYSCALL\t$" << endl ;
+            
             break;
             
         default:
-            cout << "0x" << hex << pc << "\tUnkown R-Format Instruction" << endl;
+            cout << "\tUnkown R-Format Instruction" << endl;
     }
     
 }
-
 void RFormat::execute()
 {
     

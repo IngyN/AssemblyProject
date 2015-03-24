@@ -41,3 +41,64 @@ void Instruction::setWord(unsigned int w)
 {
     word=w;
 }
+
+void Instruction::displayReg(char r)
+{
+    switch (r)
+    {
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+
+            
+            
+    }
+}

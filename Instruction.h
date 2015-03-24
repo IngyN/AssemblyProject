@@ -20,6 +20,7 @@ public:
     virtual void decode ()=0;
     virtual void display ()=0;
     virtual void execute ()=0;
+    virtual void displayReg(char);
     
     static void select(Instruction *, unsigned char);
     
