@@ -18,5 +18,14 @@ void RFormat::decode()
     rt    = (word>>16) & 0x1f;
     rs    = (word>>21) & 0x1f;
     
-    
+    switch(func)
+    {
+        case 0x20: // ADD
+            cout << "0x" << hex << pc << "\tADD\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            regs[rd]=regs[rs]+regs[rt];
+            break;
+            
+        default:
+            cout << "0x" << hex << pc << "\tUnkown R-Format Instruction" << endl;
+    }
 }
