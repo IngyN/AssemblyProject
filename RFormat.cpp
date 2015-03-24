@@ -88,8 +88,10 @@ void RFormat::display()
     }
     
 }
-void RFormat::execute()
+bool RFormat::execute()
 {
+    bool finished =false;
+    
     switch(func)
     {
         case 0x20: // ADD
@@ -133,7 +135,27 @@ void RFormat::execute()
             break;
             
         case 0x0c: // SYSCALL
-            
+            switch (registers[2])
+        {
+                case 1://Print an integer
+                cout << registers[4];
+                    break;
+                
+            case 1://Print an integer
+                cout << registers[4];
+                break;
+                
+            case 1://Print an integer
+                cout << registers[4];
+                break;
+                
+            case 1://Print an integer
+                cout << registers[4];
+                break;
+                
+                default:
+                    break;
+            }
             
             break;
             
