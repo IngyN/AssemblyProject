@@ -20,10 +20,15 @@ using namespace std;
 class Simulator
 {
 public:
+    Simulator();
+    ~Simulator();
+    
     void fetch(); // increment pc here
     void decode();
     void execute();
     void display ();
+    
+    void readTextFromFile(string);
     
 private:
     // Text segment
