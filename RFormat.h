@@ -13,7 +13,7 @@
 class RFormat: public Instruction
 {
 public:
-    
+    void decode ();
     
 private:
     

@@ -19,11 +19,16 @@ public:
     virtual void display ()=0;
     virtual void execute ()=0;
     
+    static void select(Instruction *, unsigned char);
     
 protected:
     
+
     unsigned int word;
     char opcode;
+
+
+
     
 };
 

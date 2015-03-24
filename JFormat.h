@@ -14,8 +14,14 @@
 class JFormat: public Instruction
 {
 public:
+    JFormat();
+    ~JFormat();
+    
+    void decode ();
     
 private:
+    
+    unsigned char targetAddress[4];
     
 };
 
