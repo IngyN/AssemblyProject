@@ -56,3 +56,64 @@ bool Instruction::isIFormat()
 {
     return (16!=opcode && 17!=opcode &&18!=opcode && 19!=opcode && opcode!=2 && opcode !=3 && opcode != 0);
 }
+
+void Instruction::displayReg(char r)
+{
+    switch (r)
+    {
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+            
+        case 0x00:
+            cout << "zero";
+            break;
+
+            
+            
+    }
+}
