@@ -27,6 +27,7 @@ public:
     void decode();
     void execute();
     void display ();
+    void run();
     
     
     void readTextFromFile(string);

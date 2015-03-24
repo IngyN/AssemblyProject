@@ -23,7 +23,7 @@ void RFormat::decode()
     
     
     
-    // add addu sub and or xor srl sll syscall
+    // add addu sub and or xor srl sll syscall jr
     
     
     

@@ -14,17 +14,17 @@
 class JFormat: public Instruction
 {
 public:
-    JFormat();
+    JFormat(unsigned int);
     ~JFormat();
     
-    void decode ();
+    void decode (unsigned int);
 
     void display ();
     void execute ();
     
 private:
     
-    unsigned char targetAddress[4];
+    unsigned int targetAddress;
     
 };
 

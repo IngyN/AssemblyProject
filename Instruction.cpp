@@ -40,4 +40,19 @@ void Instruction ::select(Instruction *p, unsigned char opcode)
 void Instruction::setWord(unsigned int w)
 {
     word=w;
+    opcode=w>>26;
+}
+
+bool  Instruction::isRFormat()
+{
+    return (opcode==0);
+}
+
+bool Instruction:: isJFormat()
+{
+    return (opcode==2 || opcode==3);
+}
+bool Instruction::isIFormat()
+{
+    return (16!=opcode && 17!=opcode &&18!=opcode && 19!=opcode && opcode!=2 && opcode !=3 && opcode != 0);
 }

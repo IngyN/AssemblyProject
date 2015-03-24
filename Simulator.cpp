@@ -46,7 +46,7 @@ void Simulator::readTextFromFile(string source)
     // Open the binary file to start reading the instructions
     inFile.open(inFileName.c_str(), ios::in | ios::binary);
     
-    long long maxSize= pow(2, 26)*3;
+    long long maxSize= (pow(2, 26)*3)/4;
     
     // If the file is open (this will evaluate to false if the file could not be found)
     if(inFile.is_open())
@@ -70,6 +70,17 @@ void Simulator::readTextFromFile(string source)
     }
     
     inFile.close();
+}
+
+void Simulator :: decode()
+{
+    if(textSegment[pc]->isJFormat())
+        int offset = textSegment[pc]->decode();
+}
+
+void Simulator::run()
+{
+    
 }
 
 

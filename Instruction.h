@@ -21,6 +21,9 @@ public:
     virtual void display ()=0;
     virtual void execute ()=0;
     
+    bool isRFormat();
+    bool isJFormat();
+    bool isIFormat();
     static void select(Instruction *, unsigned char);
     
 protected:
