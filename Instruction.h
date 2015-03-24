@@ -25,8 +25,6 @@ public:
     
 protected:
     
-
-
    unsigned int word;
     unsigned char opcode;
 
