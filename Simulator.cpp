@@ -17,10 +17,6 @@ Simulator::Simulator()
 {
     pc=0;
     
-    //Initialize registers
-    for (int i=0; i<32;i++)
-        registers[i].reset();
-    
     //Memory
     for(char i: memory)
         i=NULL;
