@@ -38,7 +38,7 @@ void JFormat::decode (unsigned int pc)
     
     targetAddress|=pc;
     
-    r=this->execute();
+    this->execute();
 
 }
 
@@ -49,11 +49,11 @@ void JFormat::display()
 
 void JFormat::execute()
 {
-    int r=0;
     switch (opcode) {
         case 0x02:
             // j
-            
+            if(pc+targetAddress<192*pow(2,26))
+                pc+=targetAddress;
             break;
             
         case 0x03:

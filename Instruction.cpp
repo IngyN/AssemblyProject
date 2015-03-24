@@ -13,9 +13,11 @@ using namespace std;
 
 Instruction::Instruction()
 {
+    pc=0;
+    
     //Initialize registers
-    for (int i=0; i<32;i++)
-        registers[i].reset();
+    for (int & i:registers)
+        i=0;
 }
 
 void Instruction ::select(Instruction *p, unsigned char opcode)

@@ -15,10 +15,9 @@ using namespace std;
 
 Simulator::Simulator()
 {
-    pc=0;
-    
+
     //Memory
-    for(char i: memory)
+    for(char & i: memory)
         i=NULL;
 }
 

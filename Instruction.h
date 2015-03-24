@@ -38,6 +38,8 @@ protected:
     // 32 registers of size 32 bits (4bytes).
     int registers [32];
     
+    unsigned int pc;
+    
 };
 
 #endif /* defined(__AssemblyProject__Instruction__) */
