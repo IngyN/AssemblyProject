@@ -108,37 +108,37 @@ void RFormat::execute()
             break;
             
         case 0x24: // AND
-            cout << "\tAND\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            registers[rd]=registers[rs] & registers[rt];
             
             break;
             
         case 0x25: // OR
-            cout << "\tOR\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            registers[rd]=registers[rs] | registers[rt];
             
             break;
             
         case 0x26: // XOR
-            cout << "\tXOR\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            registers[rd]=registers[rs] ^ registers[rt];
             
             break;
             
         case 0x02: // SRL
-            cout << "\tSRL\t$" << dec << rd << ", $" << rs << ", " << shamt << endl ;
+            registers[rd] = registers[rs]>>shamt;
             
             break;
             
         case 0x00: // SLL
-            cout << "\tSLL\t$" << dec << rd << ", $" << rs << ", " << shamt << endl ;
+            registers[rd] = registers[rs]<<shamt;
             
             break;
             
         case 0x0c: // SYSCALL
-            cout << "\tSYSCALL\t" << endl ;
+            
             
             break;
             
         case 0x08: // JR
-            cout << "\tJR\t$" << rs << endl ;
+            
             
             break;
             
