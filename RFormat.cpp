@@ -88,9 +88,11 @@ void RFormat::display()
     }
     
 }
-bool RFormat::execute()
+
+void RFormat::execute(bool * finished )
 {
-    bool finished =false;
+    finished = new bool;
+    finished=false;
     
     switch(func)
     {
@@ -138,19 +140,20 @@ bool RFormat::execute()
             switch (registers[2])
         {
                 case 1://Print an integer
-                cout << registers[4];
+                    cout << registers[4];
                     break;
                 
-            case 1://Print an integer
-                cout << registers[4];
+                case 11://Print a character
+                    cout << registers[4];
                 break;
                 
-            case 1://Print an integer
-                cout << registers[4];
+                case 4://Print a string
+                .....registers[4];
                 break;
                 
-            case 1://Print an integer
-                cout << registers[4];
+                case 10://Print an integer
+                finished = true;
+                cout << "Program exit.\n";
                 break;
                 
                 default:
@@ -160,7 +163,7 @@ bool RFormat::execute()
             break;
             
         case 0x08: // JR
-            
+            pc = pc +4*
             
             break;
             

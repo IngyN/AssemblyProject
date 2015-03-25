@@ -18,7 +18,10 @@ public:
     void decode ();
     void display ();
     void execute ();
+    
 private:
+    unsigned char rs, rt, imm;
+    int signedImm;
     
 };
 
