@@ -38,8 +38,6 @@ void JFormat::decode ()
     pc = pc & 0x00ffffff;
     
     targetAddress|=pc;
-    
-    this->execute();
 
 }
 
