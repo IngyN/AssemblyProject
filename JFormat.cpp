@@ -46,7 +46,7 @@ void JFormat::display()
     
 }
 
-bool JFormat::execute()
+bool JFormat::execute(unsigned int & pc)
 {
     switch (opcode) {
         case 0x02:

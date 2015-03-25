@@ -33,8 +33,6 @@ private:
     
     vector<Instruction *> textSegment; // starting address: 0x 0400 0000
 
-    
-    static unsigned int pc;
 };
 
 #endif /* defined(__AssemblyProject__Simulator__) */

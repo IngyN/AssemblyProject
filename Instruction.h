@@ -10,6 +10,7 @@
 #define __AssemblyProject__Instruction__
 #include <bitset>
 
+
 using namespace std;
 
 class RFormat;
@@ -26,7 +27,7 @@ public:
     
     virtual void decode ()=0;
     virtual void display ()=0;
-    virtual bool execute (unsigned int & pc)=0;
+    virtual bool execute ()=0;
     virtual void displayReg(char);
     
     bool isRFormat();

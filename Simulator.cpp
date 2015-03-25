@@ -10,18 +10,13 @@
 #include <fstream>
 #include "Simulator.h"
 #include <cmath>
+#include "Globals.h"
 
 using namespace std;
 
 Simulator::Simulator()
 {
-    
-    
-    
-    
-    //Memory
-    for(unsigned char & i: memory)
-        i=NULL;
+
 }
 
 Simulator::~Simulator()
