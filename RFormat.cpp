@@ -7,6 +7,7 @@
 //
 
 #include "RFormat.h"
+#include "Globals.h"
 #include <iostream>
 using namespace std;
 
@@ -41,7 +42,7 @@ void RFormat::display()
             cout<< ",";
             displayReg(rt);
             cout <<endl;
-    
+            
             break;
             
         case 0x21: // ADDU
@@ -144,7 +145,7 @@ bool RFormat::execute()
     switch(func)
     {
         case 0x20: // ADD
-            
+            //
             
             break;
             
@@ -154,7 +155,7 @@ bool RFormat::execute()
             break;
             
         case 0x22: // SUB
-            cout << "\tSUB\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            //
             
             break;
             
@@ -184,33 +185,46 @@ bool RFormat::execute()
             break;
             
         case 0x0c: // SYSCALL
+            
             switch (registers[2])
         {
-                case 1://Print an integer
-                    cout << registers[4];
-                    break;
-                
-                case 11://Print a character
-                    cout << registers[4];
+            case 1://Print an integer
+                cout << registers[4];
                 break;
                 
-                case 4://Print a string
-                int i = memory[registers[4]];
-                while(memory[i]!=NULL)
+            case 11://Print a character
+                cout << registers[4];
+                break;
+                
+            case 4://Print a string
+            {
+                bool nullFound= false;
+                for(int i = memory[registers[4]];nullFound==false;i=i+4)
                 {
+                    for(int j =3; j>=0 && nullFound==false;j++)
+                    {
+                        if(memory[i+j]=='\0')
+                            nullFound= true;
+                        else
+                            cout << memory[i+j];
+                        
+                    }
                     
                 }
                 
                 break;
-                
-                case 10://Print an integer
+            }
+            case 10://Print an integer
+            {
                 finished = true;
                 cout << "Program exit.\n";
                 break;
-                
-                default:
-                    break;
+
             }
+                                
+            default:
+                break;
+        }
             
             break;
             
@@ -220,13 +234,13 @@ bool RFormat::execute()
             
         default:
             cout << "\tUnkown R-Format Instruction" << endl;
-    
-    
-    
-    
-    
-           
-}
-     return finished;
+            
+            
+            
+            
+            
+            
+    }
+    return finished;
 }
 
