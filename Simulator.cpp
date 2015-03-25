@@ -15,7 +15,10 @@ using namespace std;
 
 Simulator::Simulator()
 {
-
+    
+    
+    
+    
     //Memory
     for(unsigned char & i: memory)
         i=NULL;

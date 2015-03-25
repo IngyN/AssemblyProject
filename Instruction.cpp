@@ -21,6 +21,10 @@ Instruction::Instruction()
     //Initialize registers
     for (int & i:registers)
         i=0;
+    
+    // Initialize stack pointer at last location in memory
+    registers[0x1d]=2048; // 8KB/4= 2KB= 2*2ˆ10
+    
 }
 
 void Instruction ::select(Instruction *p, unsigned char opcode)
