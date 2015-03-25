@@ -26,6 +26,51 @@ void IFormat::display ()
 {
     switch(opcode)
     {
+        case 0x8:
+            cout << "\tADDI\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
+            
+            break;
+            
+        case 0x9:
+            cout << "\tADDIU\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
+            
+            break;
+        
+        case 0xc:
+            cout << "\tANDI\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
+            
+            break;
+            
+        case 0xd:
+            cout << "\tORI\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
+            
+            break;
+            
+        case 0xe:
+            cout << "\tXORI\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
+            
+            break;
+            
         case 0x23://LW
             
             cout << "\tLW\t";
