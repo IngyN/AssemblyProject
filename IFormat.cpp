@@ -175,6 +175,7 @@ void IFormat::display ()
 }
 bool IFormat::execute ()
 {
+
     switch (opcode)
     {
         case 0x8:
@@ -323,9 +324,11 @@ bool IFormat::execute ()
             cout << "\tUnkown I-Format Instruction" << endl;
             
         case 0x23:
+
         {
             signedImm 		= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
             address 	= registers[rs] + signedImm;
+
             break;
         }
             
@@ -335,6 +338,7 @@ bool IFormat::execute ()
     //for now
     return true;
 }
+
 
 
 

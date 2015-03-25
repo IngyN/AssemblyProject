@@ -22,6 +22,7 @@ int main(int argc, const char * argv[])
     {
         Simulator S;
         S.readTextFromFile(argv[1]);
+        S.readMemoryFromFile(argv[2]);
     }
 
     return 0;
