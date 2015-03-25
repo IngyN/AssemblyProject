@@ -9,7 +9,6 @@
 #include "JFormat.h"
 #include <iostream>
 #include <cmath>
-#include "Globals.h"
 
 using namespace std;
 

@@ -7,7 +7,6 @@
 //
 
 #include "RFormat.h"
-#include "Globals.h"
 #include <iostream>
 using namespace std;
 

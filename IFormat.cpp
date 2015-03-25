@@ -6,8 +6,7 @@
 //  Copyright (c) 2015 Ingy. All rights reserved.
 //
 
-#include "IFormat.h"
-#include "Globals.h"
+#include "IFormat.h" 
 #include <iostream>
 using namespace std;
 

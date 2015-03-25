@@ -11,24 +11,25 @@
 # include "RFormat.h"
 # include "JFormat.h"
 #include "IFormat.h"
-#include "Globals.h"
 
 using namespace std;
 
+unsigned int Instruction:: pc=0;
+
+int Instruction::registers [32]={0};
+
+unsigned char Instruction:: memory[8*1024]={0};
+
 Instruction::Instruction()
 {
-    pc=0;
-    
-    //Initialize registers
-    for (int & i:registers)
-        i=0;
-    
-    //Memory
-    for(unsigned char & i: memory)
-        i=NULL;
     
     // Initialize stack pointer at last location in memory
     registers[0x1d]=2048; // 8KB/4= 2KB= 2*2ˆ10
+    
+}
+
+Instruction::~Instruction()
+{
     
 }
 

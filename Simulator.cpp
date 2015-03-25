@@ -10,13 +10,13 @@
 #include <fstream>
 #include "Simulator.h"
 #include <cmath>
-#include "Globals.h"
+
 
 using namespace std;
 
 Simulator::Simulator()
 {
-    pc=-1;
+    Instruction::pc=-1;
 }
 
 Simulator::~Simulator()
@@ -108,7 +108,7 @@ void Simulator::readMemoryFromFile(string source)
             for(int i=0; i<4; i++)
                 if(inFile.read(&temp[i], 1))
                 {
-                    memory[index++]=temp[i];
+                    Instruction::memory[index++]=temp[i];
                 }
             
             // If 4 bytes cannot be read from the file (i.e. end of file has been reached), break the loop.
@@ -127,11 +127,11 @@ void Simulator::run()
 {
     bool finished =false;
     
-    while (!finished && pc<textSegment.size())
+    while (!finished && Instruction::pc<textSegment.size())
     {
-        pc++;
-        textSegment [pc] ->decode();
-        finished=textSegment[pc]->execute();
+        Instruction::pc++;
+        textSegment [Instruction::pc] ->decode();
+        finished=textSegment[Instruction::pc]->execute();
         
     }
     
