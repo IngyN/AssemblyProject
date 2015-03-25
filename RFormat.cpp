@@ -195,7 +195,12 @@ bool RFormat::execute()
                 break;
                 
                 case 4://Print a string
-                memory[registers[4]];
+                int i = memory[registers[4]];
+                while(memory[i]!=NULL)
+                {
+                    
+                }
+                
                 break;
                 
                 case 10://Print an integer
