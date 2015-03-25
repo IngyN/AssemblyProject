@@ -7,6 +7,7 @@
 //
 
 #include "IFormat.h"
+#include "Globals.h"
 #include <iostream>
 using namespace std;
 
@@ -25,26 +26,114 @@ void IFormat::display ()
 {
     switch(opcode)
     {
-        case 0x23:
+        case 0x8:
+            cout << "\tADDI\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
             
             break;
             
+        case 0x9:
+            cout << "\tADDIU\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
             
+            break;
+        
+        case 0xc:
+            cout << "\tANDI\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
             
-//        case 0x23:	// LW
-//            signedImm 		= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
-//            address 	= registers[rs] + signedImm;
-//            cout << "\tLW\t$" << dec << rt << "," << signedImm << "($" << rs << ")" << endl;
-//            
-//            break;
-//            
-//            
-//        case 0x2b:	// SW
-//            signedImm 		= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
-//            address 	= registers[rs] + signedImm;
-//            cout << "\tSW\t$" << dec << rt << "," << signedImm << "($" << rs << ")" << endl;
-//            
-//            break;
+            break;
+            
+        case 0xd:
+            cout << "\tORI\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
+            
+            break;
+            
+        case 0xe:
+            cout << "\tXORI\t";
+            displayReg(rt);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ","<< dec << imm<<endl;
+            
+            break;
+            
+        case 0x23://LW
+            
+            cout << "\tLW\t";
+            displayReg(rt);
+            cout<< ","<< dec << imm;
+            cout<< "(";
+            displayReg(rs);
+            cout <<")"<<endl;
+
+            break;
+            
+        case 0x2b://SW
+            cout << "\tSW\t";
+            displayReg(rt);
+            cout<< ","<< dec << imm;
+            cout<< "(";
+            displayReg(rs);
+            cout <<")"<<endl;
+
+            break;
+            
+        case 0x20://LB
+            cout << "\tLB\t";
+            displayReg(rt);
+            cout<< ","<< dec << imm;
+            cout<< "(";
+            displayReg(rs);
+            cout <<")"<<endl;
+            
+            break;
+            
+        case 0x28://SB
+            cout << "\tLB\t";
+            displayReg(rt);
+            cout<< ","<< dec << imm;
+            cout<< "(";
+            displayReg(rs);
+            cout <<")"<<endl;
+            
+            break;
+            
+        case 0x21://LH
+            cout << "\tLH\t";
+            displayReg(rt);
+            cout<< ","<< dec << imm;
+            cout<< "(";
+            displayReg(rs);
+            cout <<")"<<endl;
+            
+            break;
+            
+        case 0x29://SH
+            cout << "\tLH\t";
+            displayReg(rt);
+            cout<< ","<< dec << imm;
+            cout<< "(";
+            displayReg(rs);
+            cout <<")"<<endl;
+            
+            break;
+
+
+
             
         default:
             cout << "\tUnkown I-Format Instruction" << endl;
@@ -53,6 +142,13 @@ void IFormat::display ()
 }
 bool IFormat::execute ()
 {
-    return false;
-    
+
+    switch (opcode)
+    {
+        case 0x23:
+            signedImm 	= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
+            address = registers[rs] + signedImm;
+            break;
+    }
 }
+
