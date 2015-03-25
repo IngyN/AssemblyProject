@@ -74,10 +74,11 @@ void Simulator :: decode()
 
 void Simulator::run()
 {
-    bool flag =true;
+    bool flag =false;
     
-    while (flag)
+    while (!flag)
     {
+        flag=textSegment[pc]->execute();
         
     }
     
