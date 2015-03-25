@@ -17,7 +17,7 @@ void IFormat::decode ()
     imm = word & 0x0000ffff;
     rt    = (word>>16) & 0x0000001f;
     rs    = (word>>21) & 0x0000001f;
-
+    signedImm 	= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
     
     //addi, addiu, andi, ori, xori, lw, sw, sb, lb, lh, sh, beq, bne, slti, lui
 }
@@ -133,19 +133,19 @@ void IFormat::display ()
             
         case 0x04:
             cout << "\tBEQ\t";
-            displayReg(rt);
-            cout<< ",";
             displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
             cout<< ", 0x"<< hex <<int(imm)<<endl;
             
             break;
             
         case 0x05:
             cout << "\tBNE\t";
-            displayReg(rt);
-            cout<< ",";
             displayReg(rs);
-            cout<< ", 0x"<< hex <<int(imm)<<endl;
+            cout<< ",";
+            displayReg(rt);
+            cout<< ", "<<hex <<int(imm)<<endl;
             
             break;
             
@@ -174,37 +174,36 @@ void IFormat::display ()
 }
 bool IFormat::execute ()
 {
-    signedImm 	= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
 
     switch (opcode)
     {
-        case 0x8://ADDI
+        case 0x08://ADDI
            
             //
             //
             
             break;
             
-        case 0x9://ADDIU
+        case 0x09://ADDIU
             registers[rt]=registers[rs] + signedImm;
             
             break;
             
-        case 0xc://ANDI
+        case 0x0c://ANDI
             registers[rt]=registers[rs] & signedImm;
             break;
             
-        case 0xd://ORI
+        case 0x0d://ORI
             registers[rt]=registers[rs] | signedImm;
             
             break;
             
-        case 0xe:
+        case 0x0e:
             registers[rt]=registers[rs] ^ signedImm;
             
             break;
             
-            //REMEBER THE MEMORY ACCESS PROBLEM
+            //REMEMBER THE MEMORY ACCESS PROBLEM
             
         case 0x23://LW
             
@@ -220,77 +219,39 @@ bool IFormat::execute ()
             break;
             
         case 0x20://LB
-            cout << "\tLB\t";
-            displayReg(rt);
-            cout<< ","<< hex << imm;
-            cout<< "(";
-            displayReg(rs);
-            cout <<")"<<endl;
+
             
             break;
             
         case 0x28://SB
-            cout << "\tLB\t";
-            displayReg(rt);
-            cout<< ","<< hex << imm;
-            cout<< "(";
-            displayReg(rs);
-            cout <<")"<<endl;
+
             
             break;
             
         case 0x21://LH
-            cout << "\tLH\t";
-            displayReg(rt);
-            cout<< ","<< hex << imm;
-            cout<< "(";
-            displayReg(rs);
-            cout <<")"<<endl;
             
             break;
             
         case 0x29://SH
-            cout << "\tLH\t";
-            displayReg(rt);
-            cout<< ","<< hex <<int(imm);
-            cout<< "(";
-            displayReg(rs);
-            cout <<")"<<endl;
+
+            break;
+            
+        case 0x04://BEQ
+
+            break;
+            
+        case 0x05: // BNE
+
             
             break;
             
-        case 0x4:
-            cout << "\tBEQ\t";
-            displayReg(rt);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ","<< hex << int(imm)<<endl;
+        case 0x0a: //SLTI
+
             
             break;
             
-        case 0x5:
-            cout << "\tBNE\t";
-            displayReg(rt);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ","<< hex << int(imm)<<endl;
-            
-            break;
-            
-        case 0xa:
-            cout << "\tSLTI\t";
-            displayReg(rt);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ","<< hex << int(imm)<<endl;
-            
-            break;
-            
-        case 0xf:
-            cout << "\tLUI\t";
-            displayReg(rt);
-            cout<< ","<< hex << int(imm)<<endl;
-            
+        case 0x0f://LUI
+
             break;
             
        

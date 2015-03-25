@@ -13,15 +13,12 @@ using namespace std;
 
 void RFormat::decode()
 {
-    opcode = word >> 26;
-    
-    func  = word & 0x3F;
-    shamt = (word>>6) & 0x1f;
-    rd    = (word>>11) & 0x1f;
-    rt    = (word>>16) & 0x1f;
-    rs    = (word>>21) & 0x1f;
-    
-    
+
+    func  = int(word & 0x3f);
+    shamt = int((word>>6) & 0x1f);
+    rd    = int((word>>11) & 0x1f);
+    rt    = int((word>>16) & 0x1f);
+    rs    = int((word>>21) & 0x1f);
     
     // add addu sub and or xor srl sll syscall jr
     

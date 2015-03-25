@@ -20,7 +20,8 @@ public:
     bool execute ();
     
 private:
-    unsigned char rs, rt, imm;
+    unsigned int rs, rt;
+    int imm;
     int signedImm, address;
     
 };
