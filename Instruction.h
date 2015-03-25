@@ -24,16 +24,18 @@ public:
     ~Instruction();
     
     void setWord(unsigned int);
+    static void displayAll();
     
     virtual void decode ()=0;
     virtual void display ()=0;
     virtual bool execute ()=0;
-    virtual void displayReg(char);
+    static void displayReg(char);
     
     bool isRFormat();
     bool isJFormat();
     bool isIFormat();
-    static void select(Instruction *, unsigned char);
+    
+    static void select(Instruction * &, unsigned char, unsigned int);
     
     static unsigned int pc;
     // Registers

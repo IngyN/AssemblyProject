@@ -24,13 +24,15 @@ Simulator::~Simulator()
     
 }
 
-void Simulator::readTextFromFile(string source)
+bool Simulator::readTextFromFile(string source)
 {
     unsigned int instWord=0;
     
     Instruction * p=NULL;
     ifstream inFile;
     string inFileName = "";
+    
+    bool flag =true;
     
     if(source=="")
     {
@@ -53,13 +55,13 @@ void Simulator::readTextFromFile(string source)
     if(inFile.is_open())
     {
         // Start reading and decoding the instructions.
-        while(true && textSegment.size()<maxSize)
+        while(textSegment.size()<maxSize)
         {
             // Read 4 bytes (an instruction) from the file
             if(!inFile.read((char *)&instWord, 4))
                 break; // If 4 bytes cannot be read from the file (i.e. end of file has been reached), break the loop.
             
-            Instruction::select(p, instWord>>26);
+            Instruction::select(p, instWord>>26, instWord);
             
             textSegment.push_back(p);
         }
@@ -68,33 +70,27 @@ void Simulator::readTextFromFile(string source)
     else // The input file cannot be opened
     {
         cout << "Cannot access input file" << endl;
+        flag=false;
     }
     
     inFile.close();
+    return flag;
 }
-void Simulator::readMemoryFromFile(string source)
+bool Simulator::readMemoryFromFile(string source)
 {
+    bool flag =true;
+    
     // read from file and store in memory
-    char temp[4]={0,0,0,0};
+    char temp[4]={0};
     int index=0;
     
     ifstream inFile;
     string inFileName = "";
     
-    if(source=="")
-    {
-        // Get the binary filename from the user
-        cout << "Enter the binary filename (e.g. sample1.bin): ";
-        cin >> inFileName;
-        
-        // Open the binary file to start reading the instructions
-        inFile.open(inFileName.c_str(), ios::in | ios::binary);
-        
-    }
-    else
+    if(source!="")
     {
         inFile.open(source.c_str(), ios::in | ios::binary);
-    }
+    
     
     long long maxSize= 2048;
     
@@ -118,22 +114,35 @@ void Simulator::readMemoryFromFile(string source)
     else // The input file cannot be opened
     {
         cout << "Cannot access input file" << endl;
+        flag=false;
     }
-    
-    inFile.close();
+        inFile.close();
+    }
+    else{
+        cout <<"No memory file"<<endl;
+    }
+    return flag;
 }
 
 void Simulator::run()
 {
+    
     bool finished =false;
     
-    while (!finished && Instruction::pc<textSegment.size())
+    Instruction::displayAll();
+    
+    
+    do
     {
+        
         Instruction::pc++;
         textSegment [Instruction::pc] ->decode();
+        textSegment [Instruction::pc] ->display();
         finished=textSegment[Instruction::pc]->execute();
         
-    }
+    }while (!finished && Instruction::pc<textSegment.size());
+    
+    Instruction::displayAll();
     
 }
 

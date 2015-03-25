@@ -26,8 +26,8 @@ public:
     void display ();
     void run();
     
-    void readTextFromFile(string);
-    void readMemoryFromFile(string);
+    bool readTextFromFile(string);
+    bool readMemoryFromFile(string);
     
 private:
     // Text segment

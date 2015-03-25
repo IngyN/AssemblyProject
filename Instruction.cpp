@@ -33,23 +33,26 @@ Instruction::~Instruction()
     
 }
 
-void Instruction ::select(Instruction *p, unsigned char opcode)
+void Instruction ::select(Instruction * & p, unsigned char opcode, unsigned int w)
 {
     if(opcode ==0)
     {
         // R format
-        p = new RFormat;
+        p =  new RFormat;
+        p->setWord(w);
     }
     else if(opcode==2 || opcode==3)
     {
         // J-Format (J & Jal)
         p = new JFormat;
+        p->setWord(w);
     }
     
     else if( 16!=opcode && 17!=opcode &&18!=opcode && 19!=opcode)
     {
         // I-Format
         p =new IFormat;
+        p->setWord(w);
     }
     
     else
@@ -164,4 +167,15 @@ void Instruction::displayReg(char r)
             break;
             
     }
+}
+
+void Instruction::displayAll()
+{
+    cout <<endl;
+    for(int i=0; i<32; i++)
+    {
+        displayReg(char(i));
+        cout <<"\t"<< registers[i]<<endl;
+    }
+    cout <<endl;
 }

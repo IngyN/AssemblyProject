@@ -14,9 +14,9 @@ void IFormat::decode ()
 {
     opcode = word >> 26;
     
-    imm = word & 0xffff;
-    rt    = (word>>16) & 0x1f;
-    rs    = (word>>21) & 0x1f;
+    imm = word & 0x0000ffff;
+    rt    = (word>>16) & 0x0000001f;
+    rs    = (word>>21) & 0x0000001f;
 
     
     //addi, addiu, andi, ori, xori, lw, sw, sb, lb, lh, sh, beq, bne, slti, lui
@@ -25,48 +25,48 @@ void IFormat::display ()
 {
     switch(opcode)
     {
-        case 0x8:
+        case 0x08:
             cout << "\tADDI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex <<int(imm)<<endl;
             
             break;
             
-        case 0x9:
+        case 0x09:
             cout << "\tADDIU\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex << int(imm)<<endl;
             
             break;
         
-        case 0xc:
+        case 0x0c:
             cout << "\tANDI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex << int(imm)<<endl;
             
             break;
             
-        case 0xd:
+        case 0x0d:
             cout << "\tORI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex <<int(imm)<<endl;
             
             break;
             
-        case 0xe:
+        case 0x0e:
             cout << "\tXORI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex <<int(imm)<<endl;
             
             break;
             
@@ -74,7 +74,7 @@ void IFormat::display ()
             
             cout << "\tLW\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex <<int(imm);
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -84,7 +84,7 @@ void IFormat::display ()
         case 0x2b://SW
             cout << "\tSW\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex <<int(imm);
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -94,7 +94,7 @@ void IFormat::display ()
         case 0x20://LB
             cout << "\tLB\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex << int(imm);
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -104,7 +104,7 @@ void IFormat::display ()
         case 0x28://SB
             cout << "\tSB\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex <<int(imm);
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -114,7 +114,7 @@ void IFormat::display ()
         case 0x21://LH
             cout << "\tLH\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex <<int(imm);
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -124,44 +124,44 @@ void IFormat::display ()
         case 0x29://SH
             cout << "\tSH\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex <<int(imm);
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
             
             break;
             
-        case 0x4:
+        case 0x04:
             cout << "\tBEQ\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ", 0x"<< hex << imm<<endl;
+            cout<< ", 0x"<< hex <<int(imm)<<endl;
             
             break;
             
-        case 0x5:
+        case 0x05:
             cout << "\tBNE\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ", 0x"<< hex << imm<<endl;
+            cout<< ", 0x"<< hex <<int(imm)<<endl;
             
             break;
             
-        case 0xa:
+        case 0x0a:
             cout << "\tSLTI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex << int(imm)<<endl;
             
             break;
             
-        case 0xf:
+        case 0x0f:
             cout << "\tLUI\t";
             displayReg(rt);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex << int(imm)<<endl;
             
             break;
 
@@ -174,7 +174,7 @@ void IFormat::display ()
 }
 bool IFormat::execute ()
 {
-    signedImm 		= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
+    signedImm 	= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
 
     switch (opcode)
     {
@@ -222,7 +222,7 @@ bool IFormat::execute ()
         case 0x20://LB
             cout << "\tLB\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex << imm;
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -232,7 +232,7 @@ bool IFormat::execute ()
         case 0x28://SB
             cout << "\tLB\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex << imm;
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -242,7 +242,7 @@ bool IFormat::execute ()
         case 0x21://LH
             cout << "\tLH\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex << imm;
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -252,7 +252,7 @@ bool IFormat::execute ()
         case 0x29://SH
             cout << "\tLH\t";
             displayReg(rt);
-            cout<< ","<< dec << imm;
+            cout<< ","<< hex <<int(imm);
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -264,7 +264,7 @@ bool IFormat::execute ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex << int(imm)<<endl;
             
             break;
             
@@ -273,7 +273,7 @@ bool IFormat::execute ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex << int(imm)<<endl;
             
             break;
             
@@ -282,14 +282,14 @@ bool IFormat::execute ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex << int(imm)<<endl;
             
             break;
             
         case 0xf:
             cout << "\tLUI\t";
             displayReg(rt);
-            cout<< ","<< dec << imm<<endl;
+            cout<< ","<< hex << int(imm)<<endl;
             
             break;
             
@@ -298,7 +298,7 @@ bool IFormat::execute ()
     }
     
     //for now
-    return true;
+    return false;
 }
 
 
