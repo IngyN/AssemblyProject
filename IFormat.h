@@ -17,7 +17,7 @@ public:
     
     void decode ();
     void display ();
-    bool execute ();
+    bool execute (unsigned int & pc);
     
 private:
     unsigned char rs, rt, imm;
