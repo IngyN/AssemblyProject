@@ -17,7 +17,7 @@ Simulator::Simulator()
 {
 
     //Memory
-    for(char & i: memory)
+    for(unsigned char & i: memory)
         i=NULL;
 }
 
@@ -69,12 +69,17 @@ void Simulator::readTextFromFile(string source)
 
 void Simulator :: decode()
 {
-    if(textSegment[pc]->isJFormat())
-        int offset = textSegment[pc]->decode();
+    textSegment[pc]->decode();
 }
 
 void Simulator::run()
 {
+    bool flag =true;
+    
+    while (flag)
+    {
+        
+    }
     
 }
 

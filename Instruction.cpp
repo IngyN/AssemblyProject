@@ -73,59 +73,85 @@ void Instruction::displayReg(char r)
 {
     switch (r)
     {
+            // $zero
         case 0x00:
-            cout << "zero";
+            cout << "$zero";
             break;
             
-        case 0x00:
-            cout << "zero";
-            break;
-
-        case 0x00:
-            cout << "zero";
+            // $at
+        case 0x01:
+            cout << "$at";
             break;
             
-        case 0x00:
-            cout << "zero";
+            // $v0-$v1
+        case 0x02:
+        case 0x03:
+            cout << "$v"<<int(r-2);
             break;
             
-        case 0x00:
-            cout << "zero";
+            // $a0-$a3
+        case 0x04:
+        case 0x05:
+        case 0x06:
+        case 0x07:
+            cout << "$a"<< int(r-4);
             break;
             
-        case 0x00:
-            cout << "zero";
+            // $t0-$t7
+        case 0x08:
+        case 0x09:
+        case 0x0a:
+        case 0x0b:
+        case 0x0c:
+        case 0x0d:
+        case 0x0e:
+        case 0x0f:
+            cout << "$t"<<int(r-8);
             break;
             
-        case 0x00:
-            cout << "zero";
+            //$s0-$s7
+        case 0x10:
+        case 0x11:
+        case 0x12:
+        case 0x13:
+        case 0x14:
+        case 0x15:
+        case 0x16:
+        case 0x17:
+            cout <<"$s"<< int(r-0x10);
             break;
             
-        case 0x00:
-            cout << "zero";
+            // $t8-$t9
+        case 0x18:
+        case 0x19:
+            cout <<"$t"<< int(r-0x18);
             break;
             
-        case 0x00:
-            cout << "zero";
+            // $k0-$k1
+        case 0x1a:
+        case 0x1b:
+            cout <<"$k"<< int(r-0x1a);
             break;
             
-        case 0x00:
-            cout << "zero";
+            // $gp
+        case 0x1c:
+            cout <<"$gp";
             break;
             
-        case 0x00:
-            cout << "zero";
+            // $sp
+        case 0x1d:
+            cout <<"$sp";
             break;
             
-        case 0x00:
-            cout << "zero";
+            // $fp
+        case 0x1e:
+            cout <<"$fp";
             break;
             
-        case 0x00:
-            cout << "zero";
+            // $ra
+        case 0x1f:
+            cout <<"$ra";
             break;
-
-            
             
     }
 }

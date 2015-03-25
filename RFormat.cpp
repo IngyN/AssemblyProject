@@ -177,5 +177,5 @@ void RFormat::execute(bool * finished )
     
 }
 
-
+}
 
