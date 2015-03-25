@@ -23,12 +23,8 @@ public:
     Simulator();
     ~Simulator();
     
-    void fetch(); // increment pc here
-    void decode();
-    void execute();
     void display ();
     void run();
-    
     
     void readTextFromFile(string);
     

@@ -46,7 +46,7 @@ void JFormat::display()
     
 }
 
-void JFormat::execute()
+bool JFormat::execute()
 {
     switch (opcode) {
         case 0x02:
@@ -68,5 +68,7 @@ void JFormat::execute()
             cout << "\nUnknown J-Format instruction"<<endl;
             break;
     }
+    
+    return false;
 
 }

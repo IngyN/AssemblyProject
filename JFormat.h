@@ -20,7 +20,7 @@ public:
     void decode ();
 
     void display (); 
-    void execute ();
+    bool execute ();
     
 private:
     

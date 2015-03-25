@@ -67,21 +67,19 @@ void Simulator::readTextFromFile(string source)
     inFile.close();
 }
 
-void Simulator :: decode()
-{
-    textSegment[pc]->decode();
-}
-
 void Simulator::run()
 {
-    bool flag =false;
+    bool finished =false;
     
-    while (!flag)
+    while (!finished)
     {
-        flag=textSegment[pc]->execute();
+        pc++;
+        textSegment [pc] ->decode();
+        finished=textSegment[pc]->execute();
         
     }
     
 }
+
 
 
