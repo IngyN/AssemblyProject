@@ -18,20 +18,36 @@ void IFormat::decode ()
     rt    = (word>>16) & 0x1f;
     rs    = (word>>21) & 0x1f;
 
+    
+    //addi, addiu, andi, ori, xori, lw, sw, sb, lb, lh, sh, beq, bne, slti, lui
 }
 void IFormat::display ()
 {
     switch(opcode)
     {
-        case 0x23:	// LW
-            signedImm 		= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
-            address 	= registers[rs] + signedImm;
-            cout << "0x" << hex << pc << "\tLW\t$" << dec << rt << "," << sImm << "($" << rs << ")" << endl;
-            //regs[rt]	= memory[address - 0x10010000];		// uncommenting this would crash the program as othe instructions are not implemented
+        case 0x23:
+            
             break;
             
+            
+            
+//        case 0x23:	// LW
+//            signedImm 		= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
+//            address 	= registers[rs] + signedImm;
+//            cout << "\tLW\t$" << dec << rt << "," << signedImm << "($" << rs << ")" << endl;
+//            
+//            break;
+//            
+//            
+//        case 0x2b:	// SW
+//            signedImm 		= (imm & 0x8000) ? (0xFFFF0000 | imm): imm;	// sign extending the immediate field
+//            address 	= registers[rs] + signedImm;
+//            cout << "\tSW\t$" << dec << rt << "," << signedImm << "($" << rs << ")" << endl;
+//            
+//            break;
+            
         default:
-            cout << "0x" << hex << pc << "\tUnkown I-Format Instruction" << endl;
+            cout << "\tUnkown I-Format Instruction" << endl;
             
     }
 }

@@ -34,42 +34,90 @@ void RFormat::display()
     switch(func)
     {
         case 0x20: // ADD
-            cout << "\tADD\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            cout << "\tADD\t";
+            displayReg(rd);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
+            cout <<endl;
     
             break;
             
         case 0x21: // ADDU
-            cout << "\tADDU\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            cout << "\tADDU\t";
+            displayReg(rd);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
+            cout <<endl;
             
             break;
             
         case 0x22: // SUB
-            cout << "\tSUB\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            cout << "\tSUB\t";
+            displayReg(rd);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
+            cout <<endl;
             
             break;
             
         case 0x24: // AND
-            cout << "\tAND\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            cout << "\tAND\t";
+            displayReg(rd);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
+            cout <<endl;
             
             break;
             
         case 0x25: // OR
-            cout << "\tOR\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            cout << "\tOR\t";
+            displayReg(rd);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
+            cout <<endl;
             
             break;
             
         case 0x26: // XOR
-            cout << "\tXOR\t$" << dec << rd << ", $" << rs << ", $" << rt << endl ;
+            cout << "\tXOR\t";
+            displayReg(rd);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
+            cout <<endl;
             
             break;
             
         case 0x02: // SRL
-            cout << "\tSRL\t$" << dec << rd << ", $" << rs << ", " << shamt << endl ;
+            cout << "\tSRL\t";
+            displayReg(rd);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
+            cout <<endl;
             
             break;
             
         case 0x00: // SLL
-            cout << "\tSLL\t$" << dec << rd << ", $" << rs << ", " << shamt << endl ;
+            cout << "\tSLL\t";
+            displayReg(rd);
+            cout<< ",";
+            displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
+            cout <<endl;
             
             break;
             
@@ -147,7 +195,7 @@ bool RFormat::execute()
                 break;
                 
                 case 4://Print a string
-                .....registers[4];
+                registers[4];
                 break;
                 
                 case 10://Print an integer
@@ -162,8 +210,7 @@ bool RFormat::execute()
             break;
             
         case 0x08: // JR
-            pc = pc +4*
-            
+            pc = registers[31];
             break;
             
         default:
@@ -173,8 +220,8 @@ bool RFormat::execute()
     
     
     
-    
+           
 }
-
+     return finished;
 }
 

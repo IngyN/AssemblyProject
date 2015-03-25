@@ -21,7 +21,7 @@ public:
     
 private:
     unsigned char rs, rt, imm;
-    int signedImm;
+    int signedImm, address;
     
 };
 

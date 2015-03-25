@@ -43,7 +43,12 @@ protected:
     // 32 registers of size 32 bits (4bytes).
     int registers [32];
     
-    unsigned int pc;
+    unsigned char memory[8*1024];	// This array represents the data memory available
+    // only 8KB of data memory
+    // Starts from address 0x10010000
+
+    
+    static unsigned int pc;
     
 };
 

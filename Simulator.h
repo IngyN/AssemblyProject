@@ -32,13 +32,7 @@ private:
     // Text segment
     
     vector<Instruction *> textSegment; // starting address: 0x 0400 0000
-    
-    unsigned char memory[8*1024];	// This array represents the data memory available
-    // only 8KB of data memory
-    // Starts from address 0x10010000
 
-    // Program counter
-    static unsigned int pc;
 };
 
 #endif /* defined(__AssemblyProject__Simulator__) */
