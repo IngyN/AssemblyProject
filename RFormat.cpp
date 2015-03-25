@@ -145,8 +145,23 @@ bool RFormat::execute()
     switch(func)
     {
         case 0x20: // ADD
-            //
-            
+            //signed addition
+            if(((registers[rs]& 0x80000000)^(registers[rt]& 0x80000000))){
+                // Same sign
+                int temp=registers[rs] + registers[rt];
+                
+                if(!((temp&0x80000000)^(registers[rs]&0x80000000)))
+                {
+                    // sign of result != sign of operands => overflow!
+                    cout <<"OVERFLOW"<<endl;
+                }
+                else
+                    registers[rd]=temp;
+            }
+            else{
+                // no overflow (signs are different)
+                registers[rd]=registers[rs] + registers[rt];
+            }
             break;
             
         case 0x21: // ADDU
@@ -155,7 +170,24 @@ bool RFormat::execute()
             break;
             
         case 0x22: // SUB
-            //
+            //signed substraction
+            
+            if(((registers[rs]& 0x80000000)^(registers[rt]& 0x80000000))){
+                // Same sign
+                int temp=registers[rs] - registers[rt];
+                
+                if(!((temp&0x80000000)^(registers[rs]&0x80000000)))
+                {
+                    // sign of result != sign of operands => overflow!
+                    cout <<"OVERFLOW"<<endl;
+                }
+                else
+                    registers[rd]=temp;
+            }
+            else{
+                // no overflow (signs are different)
+                registers[rd]=registers[rs] - registers[rt];
+            }
             
             break;
             
@@ -186,7 +218,7 @@ bool RFormat::execute()
             
         case 0x0c: // SYSCALL
             
-            switch (registers[2])
+            switch (registers[2])//$v0
         {
             case 1://Print an integer
                 cout << registers[4];
@@ -229,7 +261,7 @@ bool RFormat::execute()
             break;
             
         case 0x08: // JR
-            pc = registers[31];
+            pc = registers[rs]-0x00400000;// Starting address of text segment
             break;
             
         default:
