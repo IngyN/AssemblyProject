@@ -35,7 +35,7 @@ void IFormat::display ()
             
     }
 }
-void IFormat::execute ()
+bool IFormat::execute ()
 {
     
 }

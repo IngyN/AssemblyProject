@@ -89,10 +89,9 @@ void RFormat::display()
     
 }
 
-void RFormat::execute(bool * finished )
+bool RFormat::execute()
 {
-    finished = new bool;
-    finished=false;
+    bool finished = false;
     
     switch(func)
     {
