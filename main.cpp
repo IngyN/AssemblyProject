@@ -8,9 +8,21 @@
 
 
 #include <iostream>
+#include "Simulator.h"
+
+using namespace std;
 
 int main(int argc, const char * argv[])
 {
+    if(argc>3)
+    {
+        cout <<"too many arguments";
+    }
+    else if(argc==3)
+    {
+        Simulator S;
+        S.readTextFromFile(argv[1]);
+    }
 
     return 0;
 }

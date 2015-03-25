@@ -16,7 +16,7 @@ using namespace std;
 
 Simulator::Simulator()
 {
-
+    pc=-1;
 }
 
 Simulator::~Simulator()
@@ -32,12 +32,20 @@ void Simulator::readTextFromFile(string source)
     ifstream inFile;
     string inFileName = "";
     
+    if(source=="")
+    {
     // Get the binary filename from the user
     cout << "Enter the binary filename (e.g. sample1.bin): ";
     cin >> inFileName;
     
     // Open the binary file to start reading the instructions
     inFile.open(inFileName.c_str(), ios::in | ios::binary);
+        
+    }
+    else
+    {
+        inFile.open(source.c_str(), ios::in | ios::binary);
+    }
     
     long long maxSize= (pow(2, 26)*3)/4;
     
@@ -64,12 +72,16 @@ void Simulator::readTextFromFile(string source)
     
     inFile.close();
 }
+void Simulator::readMemoryFromFile(string)
+{
+    
+}
 
 void Simulator::run()
 {
     bool finished =false;
     
-    while (!finished)
+    while (!finished && pc<textSegment.size())
     {
         pc++;
         textSegment [pc] ->decode();
