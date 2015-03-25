@@ -195,7 +195,7 @@ bool RFormat::execute()
                 break;
                 
                 case 4://Print a string
-                registers[4];
+                memory[registers[4]];
                 break;
                 
                 case 10://Print an integer
