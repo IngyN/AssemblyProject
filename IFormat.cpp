@@ -251,7 +251,9 @@ bool IFormat::execute ()
             break;
             
         case 0x0f://LUI
-
+            int temp=0;
+            temp=imm<<16;
+            registers[rt]=imm|0x00000000;
             break;
             
        
