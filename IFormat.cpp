@@ -30,7 +30,7 @@ void IFormat::display ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< hex <<int(imm)<<endl;
+            cout<< ","<< hex <<signedImm<<endl;
             
             break;
             
@@ -39,7 +39,7 @@ void IFormat::display ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< hex << int(imm)<<endl;
+            cout<< ","<< hex << signedImm<<endl;
             
             break;
         
@@ -48,7 +48,7 @@ void IFormat::display ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< hex << int(imm)<<endl;
+            cout<< ","<< hex << signedImm<<endl;
             
             break;
             
@@ -57,7 +57,7 @@ void IFormat::display ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< hex <<int(imm)<<endl;
+            cout<< ","<< dec <<signedImm<<endl;
             
             break;
             
@@ -66,7 +66,7 @@ void IFormat::display ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< hex <<int(imm)<<endl;
+            cout<< ","<< hex <<signedImm<<endl;
             
             break;
             
@@ -74,7 +74,7 @@ void IFormat::display ()
             
             cout << "\tLW\t";
             displayReg(rt);
-            cout<< ","<< hex <<int(imm);
+            cout<< ","<< hex <<signedImm;
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -84,7 +84,7 @@ void IFormat::display ()
         case 0x2b://SW
             cout << "\tSW\t";
             displayReg(rt);
-            cout<< ","<< hex <<int(imm);
+            cout<< ","<< hex <<signedImm;
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -94,7 +94,7 @@ void IFormat::display ()
         case 0x20://LB
             cout << "\tLB\t";
             displayReg(rt);
-            cout<< ","<< hex << int(imm);
+            cout<< ","<< hex << signedImm;
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -104,7 +104,7 @@ void IFormat::display ()
         case 0x28://SB
             cout << "\tSB\t";
             displayReg(rt);
-            cout<< ","<< hex <<int(imm);
+            cout<< ","<< hex <<signedImm;
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -114,7 +114,7 @@ void IFormat::display ()
         case 0x21://LH
             cout << "\tLH\t";
             displayReg(rt);
-            cout<< ","<< hex <<int(imm);
+            cout<< ","<< hex <<signedImm;
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -124,7 +124,7 @@ void IFormat::display ()
         case 0x29://SH
             cout << "\tSH\t";
             displayReg(rt);
-            cout<< ","<< hex <<int(imm);
+            cout<< ","<< hex <<signedImm;
             cout<< "(";
             displayReg(rs);
             cout <<")"<<endl;
@@ -136,7 +136,7 @@ void IFormat::display ()
             displayReg(rs);
             cout<< ",";
             displayReg(rt);
-            cout<< ", 0x"<< hex <<int(imm)<<endl;
+            cout<< ", 0x"<< hex <<signedImm<<endl;
             
             break;
             
@@ -145,7 +145,7 @@ void IFormat::display ()
             displayReg(rs);
             cout<< ",";
             displayReg(rt);
-            cout<< ", "<<hex <<int(imm)<<endl;
+            cout<< ", "<<dec<<signedImm<<endl;
             
             break;
             
@@ -154,14 +154,14 @@ void IFormat::display ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< hex << int(imm)<<endl;
+            cout<< ","<< hex << signedImm<<endl;
             
             break;
             
         case 0x0f:
             cout << "\tLUI\t";
             displayReg(rt);
-            cout<< ","<< hex << int(imm)<<endl;
+            cout<< ","<< hex << signedImm<<endl;
             
             break;
 
