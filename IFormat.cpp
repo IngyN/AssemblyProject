@@ -221,9 +221,10 @@ bool IFormat::execute ()
             
         case 0x23://LW
             
-            for(int i=0; i<4;i++)
+            registers[rt]= (memory[rs +signedImm - 0x10010000+(4)]);
+            for(int i=1; i<4;i++)
             {
-                registers[rt]= registers[rt] | (memory[rs +signedImm - 0x10010000+i]>>(24-8*i)& 0x000000ff);
+                registers[rt]= registers[rt]<<(8) | (memory[rs +signedImm - 0x10010000+(4-i)]);
             }
             
             
@@ -233,7 +234,7 @@ bool IFormat::execute ()
             
             for(int i=0; i<4;i++)
             {
-                memory[rs +signedImm - 0x10010000 +i]= (registers[rt]>>(24-8*i)& 0x000000ff);
+                memory[rs +signedImm - 0x10010000 +i]= (unsigned(registers[rt])>>(8*i)& 0x000000ff);
                 
             }
 
@@ -252,15 +253,16 @@ bool IFormat::execute ()
             
         case 0x21://LH
             
-            for(int i=0; i<2;i++)
-            {
-                registers[rt]= registers[rt] | (memory[rs +signedImm - 0x10010000]>>(24-8*i)& 0x000000ff);
-            }
-
+            registers[rt] = memory[rs +signedImm - 0x10010000+1];
+            registers[rt] = registers[rt]<<8 | memory[rs +signedImm - 0x10010000];
+            
             break;
             
         case 0x29://SH
 
+            memory[rs +signedImm - 0x10010000] = registers[rt] & 0x000000ff;
+            memory[rs +signedImm - 0x10010000+1 ]= unsigned(registers[rt])>>8 & 0x000000ff ;
+            
             break;
             
         case 0x04://BEQ
