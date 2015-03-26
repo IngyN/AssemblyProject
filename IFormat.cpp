@@ -179,8 +179,22 @@ bool IFormat::execute ()
     {
         case 0x08://ADDI
            
-            //
-            //
+            if(((registers[rs]& 0x80000000)^(signedImm & 0x80000000))){
+                // Same sign
+                int temp=registers[rs] + signedImm;
+                
+                if(!((temp&0x80000000)^(registers[rs]&0x80000000)))
+                {
+                    // sign of result != sign of operands => overflow!
+                    cout <<"OVERFLOW"<<endl;
+                }
+                else
+                    registers[rt]=temp;
+            }
+            else{
+                // no overflow (signs are different)
+                registers[rt]=registers[rs] + signedImm;
+            }
             
             break;
             
@@ -207,46 +221,68 @@ bool IFormat::execute ()
             
         case 0x23://LW
             
-            //
-            //
+            registers[rt]= (memory[rs +signedImm - 0x10010000+(4)]);
+            for(int i=1; i<4;i++)
+            {
+                registers[rt]= registers[rt]<<(8) | (memory[rs +signedImm - 0x10010000+(4-i)]);
+            }
+            
             
             break;
             
         case 0x2b://SW
-            //
-            //
+            
+            for(int i=0; i<4;i++)
+            {
+                memory[rs +signedImm - 0x10010000 +i]= (unsigned(registers[rt])>>(8*i)& 0x000000ff);
+                
+            }
+
             
             break;
             
         case 0x20://LB
-
+            registers[rt]= memory[rs +signedImm - 0x10010000];
             
             break;
             
         case 0x28://SB
-
+            memory[rs +signedImm - 0x10010000] = registers[rt];
             
             break;
             
         case 0x21://LH
             
+            registers[rt] = memory[rs +signedImm - 0x10010000+1];
+            registers[rt] = registers[rt]<<8 | memory[rs +signedImm - 0x10010000];
+            
             break;
             
         case 0x29://SH
 
+            memory[rs +signedImm - 0x10010000] = registers[rt] & 0x000000ff;
+            memory[rs +signedImm - 0x10010000+1 ]= unsigned(registers[rt])>>8 & 0x000000ff ;
+            
             break;
             
         case 0x04://BEQ
 
+            if(registers[rt]==registers[rs])
+                pc=pc+signedImm;
+           
             break;
             
         case 0x05: // BNE
-
+            if(registers[rt]!=registers[rs])
+                pc=pc+signedImm;
             
             break;
             
         case 0x0a: //SLTI
-
+            if(registers[rs]<signedImm)
+                registers[rt]=1;
+            else
+                registers[rt]=0;
             
             break;
             
@@ -254,6 +290,7 @@ bool IFormat::execute ()
             int temp=0;
             temp=imm<<16;
             registers[rt]=imm|0x00000000;
+
             break;
             
        
