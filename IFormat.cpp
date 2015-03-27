@@ -204,16 +204,16 @@ bool IFormat::execute ()
             break;
             
         case 0x0c://ANDI
-            registers[rt]=registers[rs] & signedImm;
+            registers[rt]=registers[rs] & imm;
             break;
             
         case 0x0d://ORI
-            registers[rt]=registers[rs] | signedImm;
+            registers[rt]=registers[rs] | imm;
             
             break;
             
-        case 0x0e:
-            registers[rt]=registers[rs] ^ signedImm;
+        case 0x0e:// xor
+            registers[rt]=registers[rs] ^ imm;
             
             break;
             
@@ -221,10 +221,10 @@ bool IFormat::execute ()
             
         case 0x23://LW
             
-            registers[rt]= (memory[rs +signedImm - 0x10010000+(4)]);
+            registers[rt]= (memory[registers[rs] +signedImm - 0x10010000+(3)]);
             for(int i=1; i<4;i++)
             {
-                registers[rt]= registers[rt]<<(8) | (memory[rs +signedImm - 0x10010000+(4-i)]);
+                registers[rt]= registers[rt]<<(8) | (memory[registers[rs] +signedImm - 0x10010000+(3-i)]);
             }
             
             
@@ -242,26 +242,26 @@ bool IFormat::execute ()
             break;
             
         case 0x20://LB
-            registers[rt]= memory[rs +signedImm - 0x10010000];
+            registers[rt]= memory[registers[rs] +signedImm - 0x10010000];
             
             break;
             
         case 0x28://SB
-            memory[rs +signedImm - 0x10010000] = registers[rt];
+            memory[registers[rs] +signedImm - 0x10010000] = registers[rt];
             
             break;
             
         case 0x21://LH
             
-            registers[rt] = memory[rs +signedImm - 0x10010000+1];
-            registers[rt] = registers[rt]<<8 | memory[rs +signedImm - 0x10010000];
+            registers[rt] = memory[registers[rs] +signedImm - 0x10010000+1];
+            registers[rt] = registers[rt]<<8 | memory[registers[rs] +signedImm - 0x10010000];
             
             break;
             
         case 0x29://SH
 
-            memory[rs +signedImm - 0x10010000] = registers[rt] & 0x000000ff;
-            memory[rs +signedImm - 0x10010000+1 ]= unsigned(registers[rt])>>8 & 0x000000ff ;
+            memory[registers[rs] +signedImm - 0x10010000] = registers[rt] & 0x000000ff;
+            memory[registers[rs] +signedImm - 0x10010000+1 ]= unsigned(registers[rt])>>8 & 0x000000ff ;
             
             break;
             
@@ -289,11 +289,10 @@ bool IFormat::execute ()
         case 0x0f://LUI
             int temp=0;
             temp=imm<<16;
-            registers[rt]=imm|0x00000000;
+            registers[rt]=temp;
 
             break;
             
-       
             
     }
     
