@@ -42,6 +42,7 @@ bool Simulator::readTextFromFile(string source)
         
         // Open the binary file to start reading the instructions
         inFile.open(inFileName.c_str(), ios::in | ios::binary);
+//        flag=!(!inFile.read((char *)&instWord, 4))
         
     }
     else
@@ -69,7 +70,7 @@ bool Simulator::readTextFromFile(string source)
     
     else // The input file cannot be opened
     {
-        cout << "Cannot access input file" << endl;
+        cout << "\nCannot access input file" << endl;
         flag=false;
     }
     
@@ -85,7 +86,6 @@ bool Simulator::readMemoryFromFile(string source)
     int index=0;
     
     ifstream inFile;
-    string inFileName = "";
     
     if(source=="")
     {
@@ -135,7 +135,7 @@ bool Simulator::readMemoryFromFile(string source)
         }
         inFile.close();
     }
-
+    
     return flag;
 }
 

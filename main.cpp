@@ -53,6 +53,10 @@ int main(int argc, const char * argv[])
             S.readMemoryFromFile(s);
             S.run();
         }
+        else
+        {
+            cout <<"\n\nError invalid file\n"<<endl;
+        }
         
     }
     

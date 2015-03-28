@@ -16,11 +16,11 @@ using namespace std;
 void RFormat::decode()
 {
 
-    func  = int(word & 0x3f);
-    shamt = int((word>>6) & 0x1f);
-    rd    = int((word>>11) & 0x1f);
-    rt    = int((word>>16) & 0x1f);
-    rs    = int((word>>21) & 0x1f);
+    func  = (word & 0x3f);
+    shamt = (word>>6) & 0x1f;
+    rd    = (word>>11) & 0x1f;
+    rt    = (word>>16) & 0x1f;
+    rs    = (word>>21) & 0x1f;
     
     // add addu sub and or xor srl sll syscall jr
     
@@ -33,7 +33,7 @@ void RFormat::display()
     switch(func)
     {
         case 0x20: // ADD
-            cout << "\tADD\t";
+            cout << "\tADD\t\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -55,7 +55,7 @@ void RFormat::display()
             break;
             
         case 0x22: // SUB
-            cout << "\tSUB\t";
+            cout << "\tSUB\t\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -66,7 +66,7 @@ void RFormat::display()
             break;
             
         case 0x24: // AND
-            cout << "\tAND\t";
+            cout << "\tAND\t\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -77,7 +77,7 @@ void RFormat::display()
             break;
             
         case 0x25: // OR
-            cout << "\tOR\t";
+            cout << "\tOR\t\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -88,7 +88,7 @@ void RFormat::display()
             break;
             
         case 0x26: // XOR
-            cout << "\tXOR\t";
+            cout << "\tXOR\t\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -99,34 +99,32 @@ void RFormat::display()
             break;
             
         case 0x02: // SRL
-            cout << "\tSRL\t";
+            cout << "\tSRL\t\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
-            cout<< ",";
-            displayReg(rt);
+            cout<< ","<<int(shamt);
             cout <<endl;
             
             break;
             
         case 0x00: // SLL
-            cout << "\tSLL\t";
+            cout << "\tSLL\t\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
-            cout<< ",";
-            displayReg(rt);
+            cout<< ","<<int(shamt);
             cout <<endl;
             
             break;
             
         case 0x0c: // SYSCALL
-            cout << "\tSYSCALL\t" << endl ;
+            cout << "\tSYSCALL\t" << endl<<endl ;
             
             break;
             
         case 0x08: // JR
-            cout << "\tJR\t"<<"$" << rs << endl ;
+            cout << "\tJR\t\t"<<"$" << rs << endl ;
             
             break;
             
@@ -205,17 +203,17 @@ bool RFormat::execute()
             break;
             
         case 0x02: // SRL
-            registers[rd] = registers[rs]>>shamt;
+            registers[rd] = unsigned(registers[rt])>>shamt;
             
             break;
             
         case 0x00: // SLL
-            registers[rd] = registers[rs]<<shamt;
+            registers[rd] = registers[rt]<<shamt;
             
             break;
             
         case 0x0c: // SYSCALL
-            
+            cout <<dec;
             switch (registers[2])//$v0
         {
             case 1://Print an integer
@@ -229,25 +227,21 @@ bool RFormat::execute()
             case 4://Print a string
             {
                 bool nullFound= false;
-                for(int i = memory[registers[4]];nullFound==false;i=i+4)
+                
+                for(int i = registers[4]-0x10010000;nullFound==false;i++)
                 {
-                    for(int j =3; j>=0 && nullFound==false;j++)
-                    {
-                        if(memory[i+j]=='\0')
+                        if(memory[i]=='\0')
                             nullFound= true;
                         else
-                            cout << memory[i+j];
-                        
-                    }
-                    
+                            cout << memory[i];
                 }
                 
                 break;
             }
-            case 10://Print an integer
+            case 10://Exit
             {
                 finished = true;
-                cout << "Program exit.\n";
+                cout << "\n\nProgram exit.\n";
                 break;
 
             }
@@ -265,9 +259,7 @@ bool RFormat::execute()
         default:
             cout << "\tUnkown R-Format Instruction" << endl;
             
-            
-            
-            
+        
             
             
     }

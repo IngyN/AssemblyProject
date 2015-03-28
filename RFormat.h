@@ -19,7 +19,7 @@ public:
 
 private:
     
-    unsigned char rd, rs, rt, func, shamt, imm;
+    unsigned short rd, rs, rt, func, shamt, imm;
 };
 
 #endif /* defined(__AssemblyProject__RFormat__) */

@@ -30,29 +30,26 @@ void JFormat::decode ()
     // get target Address
     
     // mask opcode in the word
-    targetAddress = this->Instruction::word & 0xfff00000;
+    targetAddress = this->Instruction::word & 0x03ffffff;
     
     // shift left 2 bits (add 00 at the end)
     targetAddress <<= 2;
     
-    // mask to keep 4 most significant bits
-    pc = pc & 0xff000000;
-    
-    targetAddress|=pc;
 
 }
 
 void JFormat::display()
 {
+    cout <<hex;
     switch (opcode) {
         case 0x02:
             // j
-            cout << "\tj\t"<<targetAddress-0x00400000;
+            cout << "\tj\t\t"<<targetAddress<<endl;
             break;
             
         case 0x03:
             // jal
-           cout << "\tjal\t"<<targetAddress-0x00400000;
+            cout << "\tjal\t\t"<<targetAddress<<endl;
             break;
             
         default:
@@ -67,15 +64,30 @@ bool JFormat::execute()
         case 0x02:
             // j
             if((pc+targetAddress)<(192*pow(2,26)+pow(2,12))&&(pc+targetAddress)>0 )
+            {
+                // mask to keep 4 most significant bits
+                int temp = pc & 0xf0000000;
+                
+                targetAddress=targetAddress|temp;
                 pc=targetAddress-0x00400000; // Starting address of Text segment
+                pc/=4;
+                pc--;
+            }
             break;
             
         case 0x03:
             // jal
             if((pc+targetAddress)<(192*pow(2,26)+pow(2,12))&&(pc+targetAddress)>0 )
             {
-                registers[31]=pc+1+0x00400000; //Starting address of text segment.
+                // mask to keep 4 most significant bits
+                int temp = pc & 0xf000;
+                
+                targetAddress|=temp;
+                
+                registers[31]=pc+0x00400000; //Starting address of text segment.
                 pc=targetAddress-0x00400000;
+                pc/=4;
+                pc--;
             }
             break;
             
