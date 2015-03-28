@@ -41,7 +41,7 @@ void IFormat::display ()
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
-            cout<< ","<< hex << signedImm<<endl;
+            cout<< ","<< dec << signedImm<<endl;
             
             break;
         
@@ -166,8 +166,6 @@ void IFormat::display ()
             cout<< ","<< hex << signedImm<<endl;
             
             break;
-
-
             
         default:
             cout << "\tUnkown I-Format Instruction" << endl;
@@ -236,7 +234,7 @@ bool IFormat::execute ()
             
             for(int i=0; i<4;i++)
             {
-                memory[rs +signedImm - 0x10010000 +i]= (unsigned(registers[rt])>>(8*i)& 0x000000ff);
+                memory[registers[rs] - 0x10010000+signedImm+i]=(unsigned(registers[rt])>>(8*i))& 0x000000ff;
                 
             }
 

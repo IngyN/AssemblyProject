@@ -84,7 +84,7 @@ bool JFormat::execute()
                 
                 targetAddress|=temp;
                 
-                registers[31]=pc+0x00400000; //Starting address of text segment.
+                registers[31]=pc*4+0x00400000+4; //Starting address of text segment.
                 pc=targetAddress-0x00400000;
                 pc/=4;
                 pc--;

@@ -37,7 +37,7 @@ bool Simulator::readTextFromFile(string source)
     if(source=="")
     {
         // Get the binary filename from the user
-        cout << "Enter the binary filename (e.g. sample1.bin): ";
+        cout << "Enter the binary filename (e.g. sample1.bin): "<<endl;
         cin >> inFileName;
         
         // Open the binary file to start reading the instructions

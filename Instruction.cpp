@@ -24,7 +24,7 @@ Instruction::Instruction()
 {
     
     // Initialize stack pointer at last location in memory
-    registers[0x1d]=2048; // 8KB/4= 2KB= 2*2ˆ10
+    registers[0x1d]=4*2048+0x10010000; // 8KB/4= 2KB= 2*2ˆ10
     
 }
 

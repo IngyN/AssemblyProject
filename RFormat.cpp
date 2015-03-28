@@ -98,6 +98,16 @@ void RFormat::display()
             
             break;
             
+        case 0x2a: //SLT
+            cout <<"\tSLT\t\t";
+            displayReg(rd);
+            cout<<",";
+            displayReg(rs);
+            cout<< ",";
+            displayReg(rt);
+            cout <<endl;
+            break;
+            
         case 0x02: // SRL
             cout << "\tSRL\t\t";
             displayReg(rd);
@@ -200,6 +210,10 @@ bool RFormat::execute()
         case 0x26: // XOR
             registers[rd]=registers[rs] ^ registers[rt];
             
+            break;
+            
+        case 0x2a: //SLT
+            registers[rd]=(registers[rs]<registers[rt])?1:0;
             break;
             
         case 0x02: // SRL
