@@ -84,8 +84,10 @@ bool Instruction::isIFormat()
 
 void Instruction::displayReg(char r)
 {
+    cout <<dec;
     switch (r)
     {
+        
             // $zero
         case 0x00:
             cout << "$zero";

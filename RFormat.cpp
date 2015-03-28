@@ -33,7 +33,7 @@ void RFormat::display()
     switch(func)
     {
         case 0x20: // ADD
-            cout << "\tADD"<<setw(15);
+            cout << "\tADD\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -44,7 +44,7 @@ void RFormat::display()
             break;
             
         case 0x21: // ADDU
-            cout << "\tADDU"<<setw(15);
+            cout << "\tADDU\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -55,7 +55,7 @@ void RFormat::display()
             break;
             
         case 0x22: // SUB
-            cout << "\tSUB"<<setw(15);
+            cout << "\tSUB\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -66,7 +66,7 @@ void RFormat::display()
             break;
             
         case 0x24: // AND
-            cout << "\tAND"<<setw(15);
+            cout << "\tAND\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -77,7 +77,7 @@ void RFormat::display()
             break;
             
         case 0x25: // OR
-            cout << "\tOR"<<setw(15);
+            cout << "\tOR\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -88,7 +88,7 @@ void RFormat::display()
             break;
             
         case 0x26: // XOR
-            cout << "\tXOR"<<setw(15);
+            cout << "\tXOR\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -99,7 +99,7 @@ void RFormat::display()
             break;
             
         case 0x02: // SRL
-            cout << "\tSRL"<<setw(15);
+            cout << "\tSRL\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -110,7 +110,7 @@ void RFormat::display()
             break;
             
         case 0x00: // SLL
-            cout << "\tSLL"<<setw(15);
+            cout << "\tSLL\t";
             displayReg(rd);
             cout<< ",";
             displayReg(rs);
@@ -126,7 +126,7 @@ void RFormat::display()
             break;
             
         case 0x08: // JR
-            cout << "\tJR"<<setw(15)<<"$" << rs << endl ;
+            cout << "\tJR\t"<<"$" << rs << endl ;
             
             break;
             

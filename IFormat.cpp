@@ -28,7 +28,7 @@ void IFormat::display ()
     switch(opcode)
     {
         case 0x08:
-            cout << "\tADDI"<<setw(15);
+            cout << "\tADDI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
@@ -37,7 +37,7 @@ void IFormat::display ()
             break;
             
         case 0x09:
-            cout << "\tADDIU"<<setw(15);
+            cout << "\tADDIU\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
@@ -46,7 +46,7 @@ void IFormat::display ()
             break;
         
         case 0x0c:
-            cout << "\tANDI"<<setw(15);
+            cout << "\tANDI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
@@ -55,7 +55,7 @@ void IFormat::display ()
             break;
             
         case 0x0d:
-            cout << "\tORI"<<setw(15);
+            cout << "\tORI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
@@ -64,7 +64,7 @@ void IFormat::display ()
             break;
             
         case 0x0e:
-            cout << "\tXORI"<<setw(15);
+            cout << "\tXORI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
@@ -74,7 +74,7 @@ void IFormat::display ()
             
         case 0x23://LW
             
-            cout << "\tLW"<<setw(15);
+            cout << "\tLW\t";
             displayReg(rt);
             cout<< ","<< hex <<signedImm;
             cout<< "(";
@@ -84,7 +84,7 @@ void IFormat::display ()
             break;
             
         case 0x2b://SW
-            cout << "\tSW"<<setw(15);
+            cout << "\tSW\t";
             displayReg(rt);
             cout<< ","<< hex <<signedImm;
             cout<< "(";
@@ -94,7 +94,7 @@ void IFormat::display ()
             break;
             
         case 0x20://LB
-            cout << "\tLB"<<setw(15);
+            cout << "\tLB\t";
             displayReg(rt);
             cout<< ","<< hex << signedImm;
             cout<< "(";
@@ -104,7 +104,7 @@ void IFormat::display ()
             break;
             
         case 0x28://SB
-            cout << "\tSB"<<setw(15);
+            cout << "\tSB\t";
             displayReg(rt);
             cout<< ","<< hex <<signedImm;
             cout<< "(";
@@ -114,7 +114,7 @@ void IFormat::display ()
             break;
             
         case 0x21://LH
-            cout << "\tLH"<<setw(15);
+            cout << "\tLH\t";
             displayReg(rt);
             cout<< ","<< hex <<signedImm;
             cout<< "(";
@@ -124,7 +124,7 @@ void IFormat::display ()
             break;
             
         case 0x29://SH
-            cout << "\tSH"<<setw(15);
+            cout << "\tSH\t";
             displayReg(rt);
             cout<< ","<< hex <<signedImm;
             cout<< "(";
@@ -134,7 +134,7 @@ void IFormat::display ()
             break;
             
         case 0x04:
-            cout << "\tBEQ"<<setw(15);
+            cout << "\tBEQ\t";
             displayReg(rs);
             cout<< ",";
             displayReg(rt);
@@ -143,7 +143,7 @@ void IFormat::display ()
             break;
             
         case 0x05:
-            cout << "\tBNE"<<setw(15);
+            cout << "\tBNE\t";
             displayReg(rs);
             cout<< ",";
             displayReg(rt);
@@ -152,7 +152,7 @@ void IFormat::display ()
             break;
             
         case 0x0a:
-            cout << "\tSLTI"<<setw(15);
+            cout << "\tSLTI\t";
             displayReg(rt);
             cout<< ",";
             displayReg(rs);
@@ -161,7 +161,7 @@ void IFormat::display ()
             break;
             
         case 0x0f:
-            cout << "\tLUI"<<setw(15);
+            cout << "\tLUI\t";
             displayReg(rt);
             cout<< ","<< hex << signedImm<<endl;
             

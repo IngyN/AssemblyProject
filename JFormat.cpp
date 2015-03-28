@@ -47,12 +47,12 @@ void JFormat::display()
     switch (opcode) {
         case 0x02:
             // j
-            cout << "\tj"<<setw(15)<<targetAddress-0x00400000;
+            cout << "\tj\t"<<targetAddress-0x00400000;
             break;
             
         case 0x03:
             // jal
-           cout << "\tjal"<<setw(15)<<targetAddress-0x00400000;
+           cout << "\tjal\t"<<targetAddress-0x00400000;
             break;
             
         default:

@@ -161,6 +161,9 @@ void Simulator::run()
         Instruction::pc++;
         finished=textSegment[Instruction::pc]->execute();
         
+        Instruction::registers[Instruction::pc%32];
+        Instruction::memory[Instruction::pc];
+        
     }while (!finished && Instruction::pc<textSegment.size()-1);
     
     Instruction::displayAll();
