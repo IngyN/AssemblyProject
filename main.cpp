@@ -49,7 +49,10 @@ int main(int argc, const char * argv[])
         Simulator S;
         
         if(S.readTextFromFile(s))
+        {
+            S.readMemoryFromFile(s);
             S.run();
+        }
         
     }
     
