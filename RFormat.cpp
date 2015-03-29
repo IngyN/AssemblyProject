@@ -267,7 +267,7 @@ bool RFormat::execute()
             break;
             
         case 0x08: // JR
-            pc = registers[rs]-0x00400000;// Starting address of text segment
+            pc = (registers[rs]-0x00400000-4)/4;// Starting address of text segment
             break;
             
         default:
