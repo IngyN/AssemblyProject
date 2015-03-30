@@ -11,6 +11,7 @@
 # include "RFormat.h"
 # include "JFormat.h"
 #include "IFormat.h"
+#include <QString>
 
 using namespace std;
 
@@ -85,7 +86,7 @@ bool Instruction::isIFormat()
 string Instruction::displayReg(char r)
 {
     string s;
-    cout <<dec;
+//    cout <<dec;
     switch (r)
     {
         
@@ -102,7 +103,7 @@ string Instruction::displayReg(char r)
             // $v0-$v1
         case 0x02:
         case 0x03:
-            s= "$v"+to_string((r-2));
+            s= "$v"+QString::number((r-2)).toStdString();
             break;
             
             // $a0-$a3
@@ -110,7 +111,7 @@ string Instruction::displayReg(char r)
         case 0x05:
         case 0x06:
         case 0x07:
-            s= "$a"+to_string(int(r-4));
+            s= "$a"+QString::number(int(r-4)).toStdString();
             break;
             
             // $t0-$t7
@@ -122,7 +123,7 @@ string Instruction::displayReg(char r)
         case 0x0d:
         case 0x0e:
         case 0x0f:
-            s= "$t"+to_string(int(r-8));
+            s= "$t"+QString::number(int(r-8)).toStdString();
             break;
             
             //$s0-$s7
@@ -134,19 +135,19 @@ string Instruction::displayReg(char r)
         case 0x15:
         case 0x16:
         case 0x17:
-            s="$s"+to_string(int(r-0x10));
+            s="$s"+QString::number(int(r-0x10)).toStdString();
             break;
             
             // $t8-$t9
         case 0x18:
         case 0x19:
-            s="$t"+to_string(int(r-0x18));
+            s="$t"+QString::number(int(r-0x18)).toStdString();
             break;
             
             // $k0-$k1
         case 0x1a:
         case 0x1b:
-            s="$k"+ to_string(int(r-0x1a));
+            s="$k"+ QString::number(int(r-0x1a)).toStdString();
             break;
             
             // $gp

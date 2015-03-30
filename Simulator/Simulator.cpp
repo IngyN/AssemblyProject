@@ -10,6 +10,7 @@
 #include <fstream>
 #include "Simulator.h"
 #include <cmath>
+#include <QString>
 
 
 using namespace std;
@@ -32,23 +33,23 @@ bool Simulator::readTextFromFile(string source)
     ifstream inFile;
     string inFileName = "";
     
-    bool flag =true;
+//    bool flag =true;
     
-    if(source=="")
-    {
-        // Get the binary filename from the user
-        cout << "Enter the binary filename (e.g. sample1.bin): "<<endl;
-        cin >> inFileName;
+//    if(source=="")
+//    {
+//        // Get the binary filename from the user
+//        cout << "Enter the binary filename (e.g. sample1.bin): "<<endl;
+//        cin >> inFileName;
         
-        // Open the binary file to start reading the instructions
-        inFile.open(inFileName.c_str(), ios::in | ios::binary);
-//        flag=!(!inFile.read((char *)&instWord, 4))
+//        // Open the binary file to start reading the instructions
+//        inFile.open(inFileName.c_str(), ios::in | ios::binary);
+////        flag=!(!inFile.read((char *)&instWord, 4))
         
-    }
-    else
-    {
+//    }
+//    else
+
         inFile.open(source.c_str(), ios::in | ios::binary);
-    }
+
     
     long long maxSize= (pow(2.0, 26)*3)/4;
     
@@ -66,16 +67,16 @@ bool Simulator::readTextFromFile(string source)
             
             textSegment.push_back(p);
         }
+        inFile.close();
     }
     
     else // The input file cannot be opened
     {
         cout << "\nCannot access input file" << endl;
-        flag=false;
+        return false;
     }
-    
-    inFile.close();
-    return flag;
+
+    return true;
 }
 bool Simulator::readMemoryFromFile(string source)
 {
@@ -161,20 +162,20 @@ void Simulator::run()
     
 }
 
-vector<string> * Simulator::disassembler()
+vector<QString> * Simulator::disassembler()
 {
-    vector <string> v;
+    vector <QString> * v= new vector<QString>;
     do
     {
         Instruction::pc++;
         textSegment [Instruction::pc] ->decode();
-        v.push_back(textSegment [Instruction::pc] ->display());
+        v->push_back(QString::fromStdString(textSegment [Instruction::pc] ->display()));
 
     }while (Instruction::pc<textSegment.size()-1);
 
     Instruction::pc =-1;
 
-    return &v;
+    return v;
 }
 
 

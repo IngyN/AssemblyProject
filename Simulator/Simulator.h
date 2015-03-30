@@ -14,6 +14,7 @@
 #include "RFormat.h"
 #include <bitset>
 #include <vector>
+#include <QString>
 
 using namespace std;
 
@@ -27,6 +28,7 @@ public:
     
     bool readTextFromFile(string);
     bool readMemoryFromFile(string);
+    vector<QString> * disassembler();
     
 private:
     // Text segment

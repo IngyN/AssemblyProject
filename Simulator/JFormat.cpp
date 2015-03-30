@@ -10,7 +10,7 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
-
+#include <QString>
 using namespace std;
 
 JFormat::JFormat()
@@ -38,22 +38,22 @@ void JFormat::decode ()
 
 }
 
-void JFormat::display()
+string JFormat::display()
 {
-    cout <<hex;
+    string s;
     switch (opcode) {
         case 0x02:
             // j
-            cout << "\tj\t\t"<<targetAddress<<endl;
+            s="\tj\t\t"+QString::number(targetAddress).toStdString()+"\n";
             break;
             
         case 0x03:
             // jal
-            cout << "\tjal\t\t"<<targetAddress<<endl;
+            s="\tjal\t\t"+QString::number(targetAddress).toStdString()+"\n";
             break;
             
         default:
-            cout << "\nUnknown J-Format instruction"<<endl;
+            s="\nUnknown J-Format instruction\n";
             break;
     }
 }

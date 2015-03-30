@@ -13,13 +13,13 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTableView>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,33 +28,40 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QLabel *label;
-    QTableView *tableView;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
+    QLabel *label1;
+    QLineEdit *textFile;
+    QLabel *label_2;
+    QPushButton *pushButton;
+    QCheckBox *checkBox;
+    QLineEdit *memoryFile;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(559, 411);
+        MainWindow->resize(511, 317);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(30, 30, 271, 291));
-        tableView = new QTableView(centralWidget);
-        tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(370, 10, 171, 331));
+        label1 = new QLabel(centralWidget);
+        label1->setObjectName(QStringLiteral("label1"));
+        label1->setGeometry(QRect(50, 70, 331, 21));
+        textFile = new QLineEdit(centralWidget);
+        textFile->setObjectName(QStringLiteral("textFile"));
+        textFile->setGeometry(QRect(50, 100, 391, 31));
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(50, 30, 261, 16));
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(370, 240, 115, 32));
+        checkBox = new QCheckBox(centralWidget);
+        checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setGeometry(QRect(50, 140, 171, 20));
+        memoryFile = new QLineEdit(centralWidget);
+        memoryFile->setObjectName(QStringLiteral("memoryFile"));
+        memoryFile->setGeometry(QRect(50, 170, 391, 31));
         MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 559, 22));
-        MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -66,8 +73,11 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        label->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Welcome", 0));
+        label1->setText(QApplication::translate("MainWindow", "Please enter the Text segment binary file's full path:", 0));
+        label_2->setText(QApplication::translate("MainWindow", "Welcome to this MIPS Simulation Program", 0));
+        pushButton->setText(QApplication::translate("MainWindow", "Done", 0));
+        checkBox->setText(QApplication::translate("MainWindow", "Add a memory file path", 0));
     } // retranslateUi
 
 };

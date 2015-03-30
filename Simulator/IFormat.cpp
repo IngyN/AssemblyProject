@@ -9,6 +9,7 @@
 #include "IFormat.h" 
 #include <iostream>
 #include <iomanip>
+#include <QString>
 
 using namespace std;
 
@@ -29,30 +30,30 @@ string IFormat::display ()
     switch(opcode)
     {
         case 0x08:
-            s= "\taddi\t"+displayReg(rt)+","+displayReg(rs)+", "+to_string(signedImm)+"\n";
+            s= "\taddi\t"+displayReg(rt)+","+displayReg(rs)+", "+QString::number(signedImm).toStdString()+"\n";
             
             break;
             
         case 0x09:
-            s= "\taddiu\t"+displayReg(rt)+","+displayReg(rs)+", "+to_string(signedImm)+"\n";
+            s= "\taddiu\t"+displayReg(rt)+","+displayReg(rs)+", "+QString::number(signedImm).toStdString()+"\n";
             
             break;
         
         case 0x0c:
 //            cout << "\tANDI\t";
-            s= "\tandi\t"+displayReg(rt)+","+displayReg(rs)+", "+to_string(signedImm)+"\n";
+            s= "\tandi\t"+displayReg(rt)+","+displayReg(rs)+", "+QString::number(signedImm).toStdString()+"\n";
             
             break;
             
         case 0x0d:
 //            cout << "\tORI\t\t";
-            s= "\tori\t\t"+displayReg(rt)+","+displayReg(rs)+", "+to_string(signedImm)+"\n";
+            s= "\tori\t\t"+displayReg(rt)+","+displayReg(rs)+", "+QString::number(signedImm).toStdString()+"\n";
             
             break;
             
         case 0x0e:
 //            cout << "\tXORI\t";
-            s= "\txori\t"+displayReg(rt)+","+displayReg(rs)+", "+to_string(signedImm)+"\n";
+            s= "\txori\t"+displayReg(rt)+","+displayReg(rs)+", "+QString::number(signedImm).toStdString()+"\n";
             
             break;
             
@@ -64,36 +65,36 @@ string IFormat::display ()
 //            cout<< "(";
 //            displayReg(rs);
 //            cout <<")"<<endl;
-            s= "\tlw\t\t"+displayReg(rt)+","+to_string(signedImm)+"("+displayReg(rs)+")"+"\n";
+            s= "\tlw\t\t"+displayReg(rt)+","+QString::number(signedImm).toStdString()+"("+displayReg(rs)+")"+"\n";
 
             break;
             
         case 0x2b://SW
 //            cout << "\tSW\t\t";
-            s= "\tsw\t\t"+displayReg(rt)+","+to_string(signedImm)+"("+displayReg(rs)+")"+"\n";
+            s= "\tsw\t\t"+displayReg(rt)+","+QString::number(signedImm).toStdString()+"("+displayReg(rs)+")"+"\n";
             break;
             
         case 0x20://LB
 //            cout << "\tLB\t\t";
-            s= "\tlb\t\t"+displayReg(rt)+","+to_string(signedImm)+"("+displayReg(rs)+")"+"\n";
+            s= "\tlb\t\t"+displayReg(rt)+","+QString::number(signedImm).toStdString()+"("+displayReg(rs)+")"+"\n";
             
             break;
             
         case 0x28://SB
 //            cout << "\tSB\t\t";
-            s= "\tsb\t\t"+displayReg(rt)+","+to_string(signedImm)+"("+displayReg(rs)+")"+"\n";
+            s= "\tsb\t\t"+displayReg(rt)+","+QString::number(signedImm).toStdString()+"("+displayReg(rs)+")"+"\n";
             
             break;
             
         case 0x21://LH
 //            cout << "\tLH\t\t";
-            s= "\tlh\t\t"+displayReg(rt)+","+to_string(signedImm)+"("+displayReg(rs)+")"+"\n";
+            s= "\tlh\t\t"+displayReg(rt)+","+QString::number(signedImm).toStdString()+"("+displayReg(rs)+")"+"\n";
             
             break;
             
         case 0x29://SH
 //            cout << "\tSH\t\t";
-            s= "\tsh\t\t"+displayReg(rt)+","+to_string(signedImm)+"("+displayReg(rs)+")"+"\n";
+            s= "\tsh\t\t"+displayReg(rt)+","+QString::number(signedImm).toStdString()+"("+displayReg(rs)+")"+"\n";
             
             break;
             
@@ -103,7 +104,7 @@ string IFormat::display ()
 //            cout<< ",";
 //            displayReg(rt);
 //            cout<< ", 0x"<< hex <<signedImm<<endl;
-            s= "\tbeq\t\t"+displayReg(rs)+","+displayReg(rt)+", "+to_string(signedImm)+"\n";
+            s= "\tbeq\t\t"+displayReg(rs)+","+displayReg(rt)+", "+QString::number(signedImm).toStdString()+"\n";
             break;
             
         case 0x05:
@@ -112,7 +113,7 @@ string IFormat::display ()
 //            cout<< ",";
 //            displayReg(rt);
 //            cout<< ", "<<dec<<signedImm<<endl;
-            s= "\tbne\t\t"+displayReg(rs)+","+displayReg(rt)+", "+to_string(signedImm)+"\n";
+            s= "\tbne\t\t"+displayReg(rs)+","+displayReg(rt)+", "+QString::number(signedImm).toStdString()+"\n";
             break;
             
         case 0x0a:
@@ -121,18 +122,18 @@ string IFormat::display ()
 //            cout<< ",";
 //            displayReg(rs);
 //            cout<< ","<< hex << signedImm<<endl;
-            s= "\tslti\t"+displayReg(rt)+","+displayReg(rs)+", "+to_string(signedImm)+"\n";
+            s= "\tslti\t"+displayReg(rt)+","+displayReg(rs)+", "+QString::number(signedImm).toStdString()+"\n";
             break;
             
         case 0x0f:
 //            cout << "\tLUI\t\t";
 //            displayReg(rt);
 //            cout<< ","<< hex << signedImm<<endl;
-            s= "\tlui\t\t"+displayReg(rt)+","+to_string(signedImm)+"\n";
+            s= "\tlui\t\t"+displayReg(rt)+","+QString::number(signedImm).toStdString()+"\n";
             break;
             
         default:
-            s= "\tUnkown I-Format Instruction"+"\n";
+            s= "\tUnkown I-Format Instruction\n";
             
     }
     return s;

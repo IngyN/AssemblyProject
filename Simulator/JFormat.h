@@ -19,7 +19,7 @@ public:
     
     void decode ();
 
-    void display (); 
+    string display ();
     bool execute ();
     
 private:

@@ -27,9 +27,9 @@ public:
     static void displayAll();
     
     virtual void decode ()=0;
-    virtual void display ()=0;
+    virtual string display ()=0;
     virtual bool execute ()=0;
-    static void displayReg(char);
+    static string displayReg(char);
     
     bool isRFormat();
     bool isJFormat();

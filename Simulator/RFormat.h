@@ -14,7 +14,7 @@ class RFormat: public Instruction
 {
 public:
     void decode ();
-    void display();
+    string display();
     bool execute ();
 
 private:

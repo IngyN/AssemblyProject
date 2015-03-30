@@ -54,7 +54,9 @@ SOURCES       = ../Simulator/main.cpp \
 		../Simulator/Instruction.cpp \
 		../Simulator/JFormat.cpp \
 		../Simulator/RFormat.cpp \
-		../Simulator/Simulator.cpp moc_mainwindow.cpp
+		../Simulator/Simulator.cpp \
+		../Simulator/simulatorwindow.cpp moc_mainwindow.cpp \
+		moc_simulatorwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		IFormat.o \
@@ -62,7 +64,9 @@ OBJECTS       = main.o \
 		JFormat.o \
 		RFormat.o \
 		Simulator.o \
-		moc_mainwindow.o
+		simulatorwindow.o \
+		moc_mainwindow.o \
+		moc_simulatorwindow.o
 DIST          = /Applications/Qt/5.4/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.4/clang_64/mkspecs/qdevice.pri \
 		/Applications/Qt/5.4/clang_64/mkspecs/features/device_config.prf \
@@ -194,13 +198,15 @@ DIST          = /Applications/Qt/5.4/clang_64/mkspecs/features/spec_pre.prf \
 		../Simulator/Instruction.h \
 		../Simulator/JFormat.h \
 		../Simulator/RFormat.h \
-		../Simulator/Simulator.h ../Simulator/main.cpp \
+		../Simulator/Simulator.h \
+		../Simulator/simulatorwindow.h ../Simulator/main.cpp \
 		../Simulator/mainwindow.cpp \
 		../Simulator/IFormat.cpp \
 		../Simulator/Instruction.cpp \
 		../Simulator/JFormat.cpp \
 		../Simulator/RFormat.cpp \
-		../Simulator/Simulator.cpp
+		../Simulator/Simulator.cpp \
+		../Simulator/simulatorwindow.cpp
 QMAKE_TARGET  = Simulator
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Simulator.app/Contents/MacOS/Simulator
@@ -238,7 +244,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_simulatorwindow.h $(OBJECTS)  
 	@test -d Simulator.app/Contents/MacOS/ || mkdir -p Simulator.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -532,9 +538,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Simulator/mainwindow.h ../Simulator/IFormat.h ../Simulator/Instruction.h ../Simulator/JFormat.h ../Simulator/RFormat.h ../Simulator/Simulator.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Simulator/main.cpp ../Simulator/mainwindow.cpp ../Simulator/IFormat.cpp ../Simulator/Instruction.cpp ../Simulator/JFormat.cpp ../Simulator/RFormat.cpp ../Simulator/Simulator.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Simulator/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Simulator/mainwindow.h ../Simulator/IFormat.h ../Simulator/Instruction.h ../Simulator/JFormat.h ../Simulator/RFormat.h ../Simulator/Simulator.h ../Simulator/simulatorwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Simulator/main.cpp ../Simulator/mainwindow.cpp ../Simulator/IFormat.cpp ../Simulator/Instruction.cpp ../Simulator/JFormat.cpp ../Simulator/RFormat.cpp ../Simulator/Simulator.cpp ../Simulator/simulatorwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Simulator/mainwindow.ui ../Simulator/simulatorwindow.ui $(DISTDIR)/
 
 
 clean:compiler_clean 
@@ -559,21 +565,39 @@ compiler_objective_c_make_all:
 compiler_objective_c_clean:
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_simulatorwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_simulatorwindow.cpp
 moc_mainwindow.cpp: /Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
+		../Simulator/Simulator.h \
+		../Simulator/IFormat.h \
+		../Simulator/Instruction.h \
+		../Simulator/JFormat.h \
+		../Simulator/RFormat.h \
 		../Simulator/mainwindow.h
 	/Applications/Qt/5.4/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -I/Applications/Qt/5.4/clang_64/mkspecs/macx-clang -I/Users/Ingy/Desktop/github/AssemblyProject/AssemblyProject/Simulator -I/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.4/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.4/clang_64/lib/QtCore.framework/Headers -I. -F/Applications/Qt/5.4/clang_64/lib ../Simulator/mainwindow.h -o moc_mainwindow.cpp
 
+moc_simulatorwindow.cpp: /Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
+		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
+		../Simulator/Simulator.h \
+		../Simulator/IFormat.h \
+		../Simulator/Instruction.h \
+		../Simulator/JFormat.h \
+		../Simulator/RFormat.h \
+		../Simulator/simulatorwindow.h
+	/Applications/Qt/5.4/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -I/Applications/Qt/5.4/clang_64/mkspecs/macx-clang -I/Users/Ingy/Desktop/github/AssemblyProject/AssemblyProject/Simulator -I/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.4/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.4/clang_64/lib/QtCore.framework/Headers -I. -F/Applications/Qt/5.4/clang_64/lib ../Simulator/simulatorwindow.h -o moc_simulatorwindow.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_simulatorwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_simulatorwindow.h
 ui_mainwindow.h: ../Simulator/mainwindow.ui
 	/Applications/Qt/5.4/clang_64/bin/uic ../Simulator/mainwindow.ui -o ui_mainwindow.h
+
+ui_simulatorwindow.h: ../Simulator/simulatorwindow.ui
+	/Applications/Qt/5.4/clang_64/bin/uic ../Simulator/simulatorwindow.ui -o ui_simulatorwindow.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -590,19 +614,26 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 main.o: ../Simulator/main.cpp ../Simulator/mainwindow.h \
 		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
-		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QApplication \
-		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h \
 		../Simulator/Simulator.h \
 		../Simulator/IFormat.h \
 		../Simulator/Instruction.h \
 		../Simulator/JFormat.h \
-		../Simulator/RFormat.h
+		../Simulator/RFormat.h \
+		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QApplication \
+		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Simulator/main.cpp
 
 mainwindow.o: ../Simulator/mainwindow.cpp ../Simulator/mainwindow.h \
 		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
-		ui_mainwindow.h
+		../Simulator/Simulator.h \
+		../Simulator/IFormat.h \
+		../Simulator/Instruction.h \
+		../Simulator/JFormat.h \
+		../Simulator/RFormat.h \
+		ui_mainwindow.h \
+		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QErrorMessage \
+		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qerrormessage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Simulator/mainwindow.cpp
 
 IFormat.o: ../Simulator/IFormat.cpp ../Simulator/IFormat.h \
@@ -630,8 +661,22 @@ Simulator.o: ../Simulator/Simulator.cpp ../Simulator/Simulator.h \
 		../Simulator/RFormat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Simulator.o ../Simulator/Simulator.cpp
 
+simulatorwindow.o: ../Simulator/simulatorwindow.cpp ../Simulator/simulatorwindow.h \
+		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
+		/Applications/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
+		../Simulator/Simulator.h \
+		../Simulator/IFormat.h \
+		../Simulator/Instruction.h \
+		../Simulator/JFormat.h \
+		../Simulator/RFormat.h \
+		ui_simulatorwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o simulatorwindow.o ../Simulator/simulatorwindow.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_simulatorwindow.o: moc_simulatorwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_simulatorwindow.o moc_simulatorwindow.cpp
 
 ####### Install
 

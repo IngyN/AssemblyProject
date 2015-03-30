@@ -9,6 +9,7 @@
 #include "RFormat.h"
 #include <iostream>
 #include <iomanip>
+#include <QString>
 
 using namespace std;
 
@@ -28,118 +29,60 @@ void RFormat::decode()
     
 }
 
-void RFormat::display()
+string RFormat::display()
 {
+    string s;
     switch(func)
     {
         case 0x20: // ADD
-            cout << "\tADD\t\t";
-            displayReg(rd);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ",";
-            displayReg(rt);
-            cout <<endl;
-            
+            s="\tadd\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x21: // ADDU
-            cout << "\tADDU\t";
-            displayReg(rd);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ",";
-            displayReg(rt);
-            cout <<endl;
+            s="\taddu\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             
             break;
             
         case 0x22: // SUB
-            cout << "\tSUB\t\t";
-            displayReg(rd);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ",";
-            displayReg(rt);
-            cout <<endl;
-            
+            s="\tsub\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x24: // AND
-            cout << "\tAND\t\t";
-            displayReg(rd);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ",";
-            displayReg(rt);
-            cout <<endl;
-            
+            s="\tand\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x25: // OR
-            cout << "\tOR\t\t";
-            displayReg(rd);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ",";
-            displayReg(rt);
-            cout <<endl;
-            
+            s="\tor\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x26: // XOR
-            cout << "\tXOR\t\t";
-            displayReg(rd);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ",";
-            displayReg(rt);
-            cout <<endl;
-            
+            s="\txor\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x2a: //SLT
-            cout <<"\tSLT\t\t";
-            displayReg(rd);
-            cout<<",";
-            displayReg(rs);
-            cout<< ",";
-            displayReg(rt);
-            cout <<endl;
+            s="\tslt\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x02: // SRL
-            cout << "\tSRL\t\t";
-            displayReg(rd);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ","<<int(shamt);
-            cout <<endl;
+            s="\tsrl\t\t"+displayReg(rd)+","+displayReg(rs)+","+QString::number(int(shamt)).toStdString()+"\n";
             
             break;
             
         case 0x00: // SLL
-            cout << "\tSLL\t\t";
-            displayReg(rd);
-            cout<< ",";
-            displayReg(rs);
-            cout<< ","<<int(shamt);
-            cout <<endl;
-            
+            s="\tsll\t\t"+displayReg(rd)+","+displayReg(rs)+","+QString::number(int(shamt)).toStdString()+"\n";
             break;
             
         case 0x0c: // SYSCALL
-            cout << "\tSYSCALL\t" << endl<<endl ;
+            s="\tsyscall\t\n\n";
             
             break;
             
         case 0x08: // JR
-            cout << "\tJR\t\t"<<"$" << rs << endl ;
-            
+            s="\tjr\t\t"+displayReg(rs)+"\n";
             break;
             
         default:
-            cout << "\tUnkown R-Format Instruction" << endl;
+            s="\tUnkown R-Format Instruction\n";
     }
     
 }
