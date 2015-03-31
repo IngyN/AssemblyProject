@@ -35,7 +35,7 @@ string RFormat::display()
     switch(func)
     {
         case 0x20: // ADD
-            s="\tadd\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
+            s="\tadd\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x21: // ADDU
@@ -44,32 +44,32 @@ string RFormat::display()
             break;
             
         case 0x22: // SUB
-            s="\tsub\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
+            s="\tsub\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x24: // AND
-            s="\tand\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
+            s="\tand\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x25: // OR
-            s="\tor\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
+            s="\tor\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x26: // XOR
-            s="\txor\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
+            s="\txor\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x2a: //SLT
-            s="\tslt\t\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
+            s="\tslt\t"+displayReg(rd)+","+displayReg(rs)+","+displayReg(rt)+"\n";
             break;
             
         case 0x02: // SRL
-            s="\tsrl\t\t"+displayReg(rd)+","+displayReg(rs)+","+QString::number(int(shamt)).toStdString()+"\n";
+            s="\tsrl\t"+displayReg(rd)+","+displayReg(rs)+","+QString::number(int(shamt)).toStdString()+"\n";
             
             break;
             
         case 0x00: // SLL
-            s="\tsll\t\t"+displayReg(rd)+","+displayReg(rs)+","+QString::number(int(shamt)).toStdString()+"\n";
+            s="\tsll\t"+displayReg(rd)+","+displayReg(rs)+","+QString::number(int(shamt)).toStdString()+"\n";
             break;
             
         case 0x0c: // SYSCALL
@@ -78,7 +78,7 @@ string RFormat::display()
             break;
             
         case 0x08: // JR
-            s="\tjr\t\t"+displayReg(rs)+"\n";
+            s="\tjr\t"+displayReg(rs)+"\n";
             break;
             
         default:

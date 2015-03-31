@@ -44,12 +44,12 @@ string JFormat::display()
     switch (opcode) {
         case 0x02:
             // j
-            s="\tj\t\t"+QString::number(targetAddress).toStdString()+"\n";
+            s="\tj\t"+QString::number(targetAddress).toStdString()+"\n";
             break;
             
         case 0x03:
             // jal
-            s="\tjal\t\t"+QString::number(targetAddress).toStdString()+"\n";
+            s="\tjal\t"+QString::number(targetAddress).toStdString()+"\n";
             break;
             
         default:

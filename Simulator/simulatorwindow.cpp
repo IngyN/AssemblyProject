@@ -14,12 +14,14 @@ SimulatorWindow::SimulatorWindow(QWidget *parent, Simulator * S) :
     ui(new Ui::SimulatorWindow)
 {
     this->S=S;
-    ui->setupUi(this);
-    cout <<"shit"<<endl;
+ ui->setupUi(this);
+    ui->DisassemblerTab->setObjectName("Text Segment");
+   ui->DisassemblerTab->setEnabled(true);
 
     cout <<"shit2"<<endl;
     this->Disassembler();
-    parent->close();
+
+    //parent->close();
     // Set registers as well
     // change tab names
 }

@@ -98,7 +98,7 @@ public:
 
         retranslateUi(SimulatorWindow);
 
-        tabs->setCurrentIndex(1);
+        tabs->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(SimulatorWindow);
@@ -108,11 +108,11 @@ public:
     {
         SimulatorWindow->setWindowTitle(QApplication::translate("SimulatorWindow", "Simulator", 0));
         actionOpen->setText(QApplication::translate("SimulatorWindow", "Open", 0));
-        tabs->setTabText(tabs->indexOf(DisassemblerTab), QApplication::translate("SimulatorWindow", "Tab 1", 0));
+        tabs->setTabText(tabs->indexOf(DisassemblerTab), QApplication::translate("SimulatorWindow", "Text Segment", 0));
 #ifndef QT_NO_ACCESSIBILITY
         Data->setAccessibleName(QString());
 #endif // QT_NO_ACCESSIBILITY
-        tabs->setTabText(tabs->indexOf(Data), QApplication::translate("SimulatorWindow", "Tab 2", 0));
+        tabs->setTabText(tabs->indexOf(Data), QApplication::translate("SimulatorWindow", "Data Segment", 0));
         commandLinkButton->setText(QApplication::translate("SimulatorWindow", "Next", 0));
         commandLinkButton_2->setText(QApplication::translate("SimulatorWindow", "Run", 0));
         menuFile->setTitle(QApplication::translate("SimulatorWindow", "File", 0));

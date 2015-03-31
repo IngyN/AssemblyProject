@@ -5,11 +5,14 @@
 #include <iostream>
 #include <simulatorwindow.h>
 
+SimulatorWindow * w0=NULL;
+
 MainWindow::MainWindow(QWidget *parent, Simulator * S) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     this->S=S;
+
     ui->setupUi(this);
 
     ui->memoryFile->setVisible(false);
@@ -105,7 +108,19 @@ void MainWindow::on_pushButton_clicked()
     if(textOpened && memOpened)
     {
         // call disassembler.
-        SimulatorWindow w0 (this, S);
+//        SimulatorWindow w0 (this, S);
+//        w0.show();
+        if(!w0) {w0 = new SimulatorWindow(this, S);}
+
+          if(w0)
+
+          {
+
+            w0->show();
+
+            this->hide();
+
+          }
     }
 
 

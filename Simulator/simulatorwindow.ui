@@ -24,11 +24,11 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="DisassemblerTab">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Text Segment</string>
      </attribute>
      <widget class="QListView" name="disassemblerOut">
       <property name="geometry">
@@ -59,7 +59,7 @@
       <string/>
      </property>
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Data Segment</string>
      </attribute>
      <widget class="QTableView" name="DataSegment">
       <property name="geometry">

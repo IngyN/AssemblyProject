@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <Simulator.h>
+#include <simulatorwindow.h>
 using namespace std;
 
 namespace Ui {
