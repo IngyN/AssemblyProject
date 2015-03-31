@@ -84,7 +84,7 @@ string RFormat::display()
         default:
             s="\tUnkown R-Format Instruction\n";
     }
-    
+    return s;
 }
 
 bool RFormat::execute()

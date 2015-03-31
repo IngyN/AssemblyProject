@@ -165,6 +165,8 @@ void Simulator::run()
 vector<QString> * Simulator::disassembler()
 {
     vector <QString> * v= new vector<QString>;
+    cout<<"pc"<<Instruction::pc<<endl;
+
     do
     {
         Instruction::pc++;

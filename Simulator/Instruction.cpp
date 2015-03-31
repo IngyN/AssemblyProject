@@ -171,6 +171,8 @@ string Instruction::displayReg(char r)
             break;
             
     }
+
+    return s;
 }
 
 void Instruction::displayAll()

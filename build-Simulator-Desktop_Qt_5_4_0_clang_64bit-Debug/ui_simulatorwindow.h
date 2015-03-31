@@ -98,7 +98,7 @@ public:
 
         retranslateUi(SimulatorWindow);
 
-        tabs->setCurrentIndex(0);
+        tabs->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(SimulatorWindow);

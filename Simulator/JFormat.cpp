@@ -56,6 +56,7 @@ string JFormat::display()
             s="\nUnknown J-Format instruction\n";
             break;
     }
+    return s;
 }
 
 bool JFormat::execute()
