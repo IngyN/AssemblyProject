@@ -15,14 +15,13 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QScrollBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -34,8 +33,7 @@ public:
     QWidget *centralwidget;
     QTabWidget *tabs;
     QWidget *DisassemblerTab;
-    QListView *disassemblerOut;
-    QScrollBar *verticalScrollBar;
+    QTextEdit *disassemblerOut;
     QWidget *Data;
     QTableView *DataSegment;
     QTableView *registers;
@@ -57,21 +55,26 @@ public:
         tabs = new QTabWidget(centralwidget);
         tabs->setObjectName(QStringLiteral("tabs"));
         tabs->setGeometry(QRect(30, 20, 441, 521));
+        QFont font;
+        font.setFamily(QStringLiteral("Courier"));
+        tabs->setFont(font);
         DisassemblerTab = new QWidget();
         DisassemblerTab->setObjectName(QStringLiteral("DisassemblerTab"));
-        disassemblerOut = new QListView(DisassemblerTab);
+        disassemblerOut = new QTextEdit(DisassemblerTab);
         disassemblerOut->setObjectName(QStringLiteral("disassemblerOut"));
-        disassemblerOut->setGeometry(QRect(-5, -19, 441, 511));
-        verticalScrollBar = new QScrollBar(DisassemblerTab);
-        verticalScrollBar->setObjectName(QStringLiteral("verticalScrollBar"));
-        verticalScrollBar->setGeometry(QRect(410, -1, 20, 491));
-        verticalScrollBar->setOrientation(Qt::Vertical);
+        disassemblerOut->setGeometry(QRect(10, -20, 421, 511));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Courier New"));
+        disassemblerOut->setFont(font1);
+        disassemblerOut->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        disassemblerOut->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        disassemblerOut->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
         tabs->addTab(DisassemblerTab, QString());
         Data = new QWidget();
         Data->setObjectName(QStringLiteral("Data"));
         DataSegment = new QTableView(Data);
         DataSegment->setObjectName(QStringLiteral("DataSegment"));
-        DataSegment->setGeometry(QRect(0, -20, 441, 511));
+        DataSegment->setGeometry(QRect(10, -20, 421, 511));
         tabs->addTab(Data, QString());
         registers = new QTableView(centralwidget);
         registers->setObjectName(QStringLiteral("registers"));
@@ -79,9 +82,11 @@ public:
         commandLinkButton = new QCommandLinkButton(centralwidget);
         commandLinkButton->setObjectName(QStringLiteral("commandLinkButton"));
         commandLinkButton->setGeometry(QRect(490, 20, 61, 31));
+        commandLinkButton->setFont(font1);
         commandLinkButton_2 = new QCommandLinkButton(centralwidget);
         commandLinkButton_2->setObjectName(QStringLiteral("commandLinkButton_2"));
         commandLinkButton_2->setGeometry(QRect(670, 20, 71, 31));
+        commandLinkButton_2->setFont(font1);
         SimulatorWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(SimulatorWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -98,7 +103,7 @@ public:
 
         retranslateUi(SimulatorWindow);
 
-        tabs->setCurrentIndex(0);
+        tabs->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(SimulatorWindow);
