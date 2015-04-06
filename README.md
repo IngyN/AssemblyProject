@@ -1,6 +1,8 @@
 # AssemblyProject in C++
 Project for the CSCE 231-Computer Organization and Assembly Language Programming - Spring 2015
 
+under the supervision of Dr. Mohamed Shalan.
+
 MIPS disassembler and simulator
 
 
