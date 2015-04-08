@@ -9,6 +9,7 @@
 #ifndef __AssemblyProject__Instruction__
 #define __AssemblyProject__Instruction__
 #include <bitset>
+#include <QString>
 
 
 using namespace std;
@@ -34,6 +35,8 @@ public:
     bool isRFormat();
     bool isJFormat();
     bool isIFormat();
+
+    virtual unsigned short returnFunction()=0;
     
     static void select(Instruction * &, unsigned char, unsigned int);
     

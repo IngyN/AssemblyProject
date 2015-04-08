@@ -20,7 +20,7 @@
       <x>30</x>
       <y>20</y>
       <width>441</width>
-      <height>521</height>
+      <height>531</height>
      </rect>
     </property>
     <property name="font">
@@ -41,7 +41,7 @@
         <x>10</x>
         <y>-20</y>
         <width>421</width>
-        <height>511</height>
+        <height>521</height>
        </rect>
       </property>
       <property name="font">
@@ -55,6 +55,9 @@
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
+      <property name="undoRedoEnabled">
+       <bool>false</bool>
+      </property>
       <property name="textInteractionFlags">
        <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
       </property>
@@ -65,16 +68,44 @@
       <string/>
      </property>
      <attribute name="title">
-      <string>Data Segment</string>
+      <string>Data Segment and Console</string>
      </attribute>
      <widget class="QTableView" name="DataSegment">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>-20</y>
+        <y>-10</y>
         <width>421</width>
-        <height>511</height>
+        <height>281</height>
        </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>86</number>
+      </attribute>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>4</number>
+      </attribute>
+     </widget>
+     <widget class="QTextEdit" name="Console">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>280</y>
+        <width>421</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="undoRedoEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -88,6 +119,35 @@
       <height>491</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustIgnored</enum>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="showDropIndicator" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="dragDropOverwriteMode">
+     <bool>false</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>115</number>
+    </attribute>
    </widget>
    <widget class="QCommandLinkButton" name="commandLinkButton">
     <property name="geometry">

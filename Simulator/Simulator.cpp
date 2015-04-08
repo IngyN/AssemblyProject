@@ -11,6 +11,7 @@
 #include "Simulator.h"
 #include <cmath>
 #include <QString>
+#include <string>
 
 
 using namespace std;
@@ -145,21 +146,62 @@ void Simulator::run()
     
     bool finished =false;
     
-//    Instruction::displayAll();
-
-    
     do
     {
         Instruction::pc++;
         finished=textSegment[Instruction::pc]->execute();
-        
-//        Instruction::registers[Instruction::pc%32];
-//        Instruction::memory[Instruction::pc];
-        
+
     }while (!finished && Instruction::pc<textSegment.size()-1);
     
-//    Instruction::displayAll();
-    
+}
+
+QVector<QString> * Simulator::getConsole()
+{
+    return &(consoleText);
+}
+
+
+void Simulator::executeSyscall()
+{
+
+    string s;
+    switch (Instruction::registers[2])//$v0
+{
+    case 1://Print an integer
+        consoleText.push_back(QString::number(Instruction::registers[4]));
+        break;
+
+    case 11://Print a character
+        consoleText.push_back(QChar(Instruction::registers[4]));
+        break;
+
+    case 4://Print a string
+    {
+        bool nullFound= false;
+
+        for(int i = Instruction::registers[4]-0x10010000;nullFound==false;i++)
+        {
+                if(Instruction::memory[i]=='\0')
+                    nullFound= true;
+                else
+                    s=s+char(Instruction::memory[i]);
+        }
+        consoleText.push_back(QString::fromStdString(s));
+        break;
+    }
+}
+}
+
+bool Simulator::run1()
+{
+    bool finished =false;
+    Instruction::pc++;
+    if (textSegment[Instruction::pc]->isRFormat() && textSegment[Instruction::pc]->returnFunction()==0x0c)
+    {
+        executeSyscall();
+    }
+    finished=textSegment[Instruction::pc]->execute();
+    return finished;
 }
 
 vector<QString> * Simulator::disassembler()
@@ -180,5 +222,8 @@ vector<QString> * Simulator::disassembler()
     return v;
 }
 
-
+int Simulator:: getTextSize()
+{
+    return textSegment.size();
+}
 

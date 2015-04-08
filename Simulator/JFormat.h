@@ -21,6 +21,7 @@ public:
 
     string display ();
     bool execute ();
+    unsigned short returnFunction();
     
 private:
     

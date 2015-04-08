@@ -17,6 +17,8 @@ public:
     string display();
     bool execute ();
 
+    unsigned short returnFunction();
+
 private:
     
     unsigned short rd, rs, rt, func, shamt, imm;

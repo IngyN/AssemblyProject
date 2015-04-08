@@ -267,7 +267,11 @@ bool IFormat::execute ()
     return false;
 }
 
-
+unsigned short IFormat::returnFunction()
+{
+   unsigned short s=0;
+   return s;
+}
 
 
 

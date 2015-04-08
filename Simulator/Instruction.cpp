@@ -141,7 +141,7 @@ string Instruction::displayReg(char r)
             // $t8-$t9
         case 0x18:
         case 0x19:
-            s="$t"+QString::number(int(r-0x18)).toStdString();
+            s="$t"+QString::number(int(r-0x18+8)).toStdString();
             break;
             
             // $k0-$k1

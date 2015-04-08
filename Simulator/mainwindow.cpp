@@ -130,3 +130,5 @@ void MainWindow::on_checkBox_toggled(bool checked)
 {
     ui->memoryFile->setHidden(!checked);
 }
+
+

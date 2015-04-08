@@ -87,10 +87,10 @@ string RFormat::display()
     return s;
 }
 
-bool RFormat::execute()
+bool RFormat::execute( )
 {
     bool finished = false;
-    
+
     switch(func)
     {
         case 0x20: // ADD
@@ -174,11 +174,11 @@ bool RFormat::execute()
             switch (registers[2])//$v0
         {
             case 1://Print an integer
-                cout << registers[4];
+                //s=QString::number(registers[4]);
                 break;
                 
             case 11://Print a character
-                cout << registers[4];
+                //s= registers[4];
                 break;
                 
             case 4://Print a string
@@ -189,8 +189,8 @@ bool RFormat::execute()
                 {
                         if(memory[i]=='\0')
                             nullFound= true;
-                        else
-                            cout << memory[i];
+                        //else
+                            //s.append(memory[i]);
                 }
                 
                 break;
@@ -198,7 +198,7 @@ bool RFormat::execute()
             case 10://Exit
             {
                 finished = true;
-                cout << "\n\nProgram exit.\n";
+                //s= QString("\n\nProgram exit.\n");
                 break;
 
             }
@@ -221,5 +221,10 @@ bool RFormat::execute()
             
     }
     return finished;
+}
+
+unsigned short RFormat::returnFunction()
+{
+    return func;
 }
 

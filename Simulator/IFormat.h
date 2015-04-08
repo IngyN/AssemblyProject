@@ -18,6 +18,7 @@ public:
     void decode ();
     string display ();
     bool execute ();
+    unsigned short returnFunction();
     
 private:
     unsigned int rs, rt;

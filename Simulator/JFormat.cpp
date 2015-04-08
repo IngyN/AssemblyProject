@@ -100,3 +100,9 @@ bool JFormat::execute()
     return false;
 
 }
+
+unsigned short JFormat::returnFunction()
+{
+   unsigned short s=0;
+   return s;
+}
