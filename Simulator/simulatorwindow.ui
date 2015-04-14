@@ -76,20 +76,23 @@
         <x>10</x>
         <y>-10</y>
         <width>421</width>
-        <height>281</height>
+        <height>271</height>
        </rect>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>86</number>
+       <number>85</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
        <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
        <number>4</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>32</number>
       </attribute>
      </widget>
      <widget class="QTextEdit" name="Console">
@@ -106,6 +109,19 @@
       </property>
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>260</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ASCII</string>
       </property>
      </widget>
     </widget>

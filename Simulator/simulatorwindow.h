@@ -27,6 +27,8 @@ private slots:
     void on_commandLinkButton_clicked();
     void on_commandLinkButton_2_clicked();
 
+    void on_checkBox_toggled(bool checked);
+
 private:
     Ui::SimulatorWindow *ui;
     Simulator *S;

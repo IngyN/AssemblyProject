@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
@@ -37,6 +38,7 @@ public:
     QWidget *Data;
     QTableView *DataSegment;
     QTextEdit *Console;
+    QCheckBox *checkBox;
     QTableView *registers;
     QCommandLinkButton *commandLinkButton;
     QCommandLinkButton *commandLinkButton_2;
@@ -76,16 +78,20 @@ public:
         Data->setObjectName(QStringLiteral("Data"));
         DataSegment = new QTableView(Data);
         DataSegment->setObjectName(QStringLiteral("DataSegment"));
-        DataSegment->setGeometry(QRect(10, -10, 421, 281));
+        DataSegment->setGeometry(QRect(10, -10, 421, 271));
         DataSegment->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        DataSegment->horizontalHeader()->setDefaultSectionSize(86);
+        DataSegment->horizontalHeader()->setDefaultSectionSize(85);
         DataSegment->horizontalHeader()->setHighlightSections(true);
         DataSegment->horizontalHeader()->setMinimumSectionSize(4);
+        DataSegment->verticalHeader()->setDefaultSectionSize(32);
         Console = new QTextEdit(Data);
         Console->setObjectName(QStringLiteral("Console"));
         Console->setGeometry(QRect(10, 280, 421, 221));
         Console->setUndoRedoEnabled(false);
         Console->setReadOnly(true);
+        checkBox = new QCheckBox(Data);
+        checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setGeometry(QRect(340, 260, 89, 20));
         tabs->addTab(Data, QString());
         registers = new QTableView(centralwidget);
         registers->setObjectName(QStringLiteral("registers"));
@@ -142,6 +148,7 @@ public:
 #ifndef QT_NO_ACCESSIBILITY
         Data->setAccessibleName(QString());
 #endif // QT_NO_ACCESSIBILITY
+        checkBox->setText(QApplication::translate("SimulatorWindow", "ASCII", 0));
         tabs->setTabText(tabs->indexOf(Data), QApplication::translate("SimulatorWindow", "Data Segment and Console", 0));
         commandLinkButton->setText(QApplication::translate("SimulatorWindow", "Next", 0));
         commandLinkButton_2->setText(QApplication::translate("SimulatorWindow", "Run", 0));

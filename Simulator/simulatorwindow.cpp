@@ -51,6 +51,7 @@ SimulatorWindow::SimulatorWindow(QWidget *parent, Simulator * S) :
    }
 
    ui->DataSegment->setModel(model2);
+   setDataContent();
 
 }
 
@@ -101,6 +102,7 @@ void SimulatorWindow::setDataContent()
         model2->setItem(i/4,i%4,new QStandardItem(QString::number(Instruction::memory[i])));
 
     ui->DataSegment->setModel(model2);
+
 }
 
 void SimulatorWindow::setConsoleOut()
@@ -123,10 +125,11 @@ void SimulatorWindow::on_commandLinkButton_clicked()
    if(!finished)
    {
        finished=S->run1();
+       this->setRegistersContent();
+       this->setDataContent();
+       this->setConsoleOut();
    }
 
-   this->setConsoleOut();
-   this->setRegistersContent();
 }
 
 void SimulatorWindow::on_commandLinkButton_2_clicked() //Run button
@@ -137,8 +140,14 @@ void SimulatorWindow::on_commandLinkButton_2_clicked() //Run button
     {
          finished=S->run1();
          this->setRegistersContent();
+         this->setDataContent();
          this->setConsoleOut();
 
     }while (!finished && Instruction::pc<maxSize-1);
     }
+}
+
+void SimulatorWindow::on_checkBox_toggled(bool checked)
+{
+    cout <<"Loulou"<<endl;
 }
