@@ -17,6 +17,7 @@ SimulatorWindow::SimulatorWindow(QWidget *parent, Simulator * S) :
 {
     this->S=S;
     finished=false;
+    ascii=false;
 
     ui->setupUi(this);
 
@@ -98,8 +99,16 @@ void SimulatorWindow::setRegistersContent()
 
 void SimulatorWindow::setDataContent()
 {
-    for(int i=0;i<8*1024; i++)
-        model2->setItem(i/4,i%4,new QStandardItem(QString::number(Instruction::memory[i])));
+    string s;
+    if (!ascii)
+        for(int i=0;i<8*1024; i++)
+            model2->setItem(i/4,i%4,new QStandardItem(QString::number(Instruction::memory[i])));
+    else
+        for(int i=0;i<8*1024; i++)
+        {
+            s =Instruction::memory[i];
+            model2->setItem(i/4,i%4,new QStandardItem(QString::fromStdString(s)));
+        }
 
     ui->DataSegment->setModel(model2);
 
@@ -149,5 +158,6 @@ void SimulatorWindow::on_commandLinkButton_2_clicked() //Run button
 
 void SimulatorWindow::on_checkBox_toggled(bool checked)
 {
-    cout <<"Loulou"<<endl;
+    ascii =checked;
+    this->setDataContent();
 }

@@ -33,6 +33,7 @@ private:
     Ui::SimulatorWindow *ui;
     Simulator *S;
     bool finished;
+    bool ascii;
     QStandardItemModel * model;
     QStandardItemModel * model2;
 };
